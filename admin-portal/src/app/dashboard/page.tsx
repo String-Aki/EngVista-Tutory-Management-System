@@ -126,7 +126,7 @@ export default function MainDashboard() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-bl-full -z-0 opacity-50"></div>
           <div className="relative z-10">
             <h1 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tight mb-2">
-              {getGreeting()}, Sir.
+              {getGreeting()}, Ma'am.
             </h1>
             <p className="text-slate-500 font-medium text-lg">
               Here is what is happening at the cram today.

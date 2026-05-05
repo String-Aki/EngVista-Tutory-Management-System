@@ -23,12 +23,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "ICMS Terminal",
-  description: "Tuition Center Management System",
+  title: "English Tutory App Admin",
+  description: "Management System for English Tutory App",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    title: "ICMS",
+    title: "English Tutory App",
     statusBarStyle: "black-translucent",
   },
   icons: {
@@ -67,9 +67,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased bg-gray-50 flex flex-col md:flex-row min-h-screen custom-scrollbar">
+      <body className="antialiased bg-slate-50 min-h-screen custom-scrollbar text-navy-900">
         <Sidebar />
-        <div className="flex-1 overflow-y-auto">
+        <div className="pb-20 md:pb-0 md:ml-64 lg:ml-72 flex flex-col min-h-screen">
           {children}
         </div>
       </body>
