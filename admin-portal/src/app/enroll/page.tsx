@@ -31,9 +31,9 @@ export default async function StudentsDirectory() {
           <section className="xl:col-span-7 w-full max-w-3xl mx-auto xl:max-w-none xl:mx-0 bg-white rounded-[2rem] shadow-sm border border-slate-200 p-6 md:p-8 flex flex-col h-[600px] overflow-hidden animate-in slide-in-from-bottom-8 fade-in duration-700 delay-100">
             <h2 className="text-xl font-black text-slate-800 mb-6 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2">
-                <span className="text-indigo-500">🎓</span> Enrolled Students
+                <span className="text-amber-500">🎓</span> Enrolled Students
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-100">
+              <span className="text-[10px] font-black uppercase tracking-widest text-slate-700 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
                 {students?.length || 0} Total
               </span>
             </h2>
@@ -44,23 +44,33 @@ export default async function StudentsDirectory() {
                 students.map((student) => (
                   <div
                     key={student.id}
-                    className="flex items-center justify-between p-4 md:p-5 border border-slate-100 rounded-2xl bg-slate-50 hover:bg-indigo-50 hover:border-indigo-200 transition-all cursor-pointer group shadow-sm"
+                    className="flex items-center justify-between p-4 md:p-5 border border-slate-100 rounded-2xl bg-slate-50 hover:bg-white hover:border-slate-300 hover:shadow-md transition-all cursor-pointer group shadow-sm"
                   >
                     <div>
-                      <h3 className="font-black text-slate-800 group-hover:text-indigo-700 transition-colors leading-tight">
+                      <h3 className="font-black text-slate-800 group-hover:text-slate-900 transition-colors leading-tight">
                         {student.full_name}
                       </h3>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">
-                        Batch {student.grade_batch}
-                      </p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                          Batch {student.grade_batch}
+                        </p>
+                        {student.contact_number && (
+                          <>
+                            <span className="text-slate-300">•</span>
+                            <p className="text-xs font-bold text-slate-500 tracking-wider">
+                              {student.contact_number}
+                            </p>
+                          </>
+                        )}
+                      </div>
                     </div>
 
                     <div className="flex flex-col items-end gap-2 shrink-0">
-                      <span className="px-3 py-1 bg-white border border-slate-200 text-slate-600 text-[10px] uppercase tracking-widest font-black rounded-lg group-hover:border-indigo-200 group-hover:text-indigo-600 transition-colors shadow-sm">
+                      <span className="px-3 py-1 bg-white border border-slate-200 text-slate-600 text-[10px] uppercase tracking-widest font-black rounded-lg group-hover:border-slate-300 group-hover:text-slate-800 transition-colors shadow-sm">
                         {student.qr_code}
                       </span>
-                      <span className="text-[10px] font-black text-amber-500 flex items-center gap-1 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded border border-amber-100">
-                        ⭐ {student.total_xp} XP
+                      <span className="text-[10px] font-black text-slate-600 flex items-center gap-1 uppercase tracking-widest bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                        🗓️ {student.cycle_classes || 0}/8 Sessions
                       </span>
                     </div>
                   </div>

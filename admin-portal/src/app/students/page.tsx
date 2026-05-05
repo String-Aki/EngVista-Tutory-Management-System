@@ -185,8 +185,8 @@ export default function StudentsHub() {
                 />
               </div>
 
-              <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                <p className="text-sm text-purple-800 font-medium text-center">
+              <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <p className="text-sm text-slate-600 font-medium text-center">
                   Saving will randomly generate a new card back variant and
                   queue this student for printing.
                 </p>
@@ -205,7 +205,7 @@ export default function StudentsHub() {
                   disabled={
                     isUpdating || newGrade === promotionModal.grade_batch
                   }
-                  className="flex-1 py-3 px-4 bg-purple-600 text-white font-black rounded-xl hover:bg-purple-500 shadow-lg shadow-purple-600/30 transition-all disabled:opacity-50"
+                  className="flex-1 py-3 px-4 bg-slate-900 text-white font-black rounded-xl hover:bg-slate-800 shadow-lg shadow-slate-900/30 transition-all disabled:opacity-50"
                 >
                   {isUpdating ? "Rolling..." : "Promote & Re-roll"}
                 </button>
@@ -220,13 +220,13 @@ export default function StudentsHub() {
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/95 backdrop-blur-md p-4 overflow-y-auto animate-in fade-in duration-300">
           <div className="bg-white p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col items-center max-w-5xl w-full border border-slate-200 my-4 animate-in zoom-in-95 duration-500">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-100 mb-2 md:mb-4 animate-bounce">
+              <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-amber-50 border border-amber-100 mb-2 md:mb-4 animate-bounce">
                 <span className="text-2xl md:text-3xl">🎉</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-black text-slate-800">
                 Promoted to Grade {promotedStudent.grade_batch}!
               </h2>
-              <p className="text-purple-600 font-bold mt-2 text-lg">
+              <p className="text-amber-600 font-bold mt-2 text-lg">
                 New card back unlocked and queued for printing.
               </p>
             </div>
@@ -283,7 +283,7 @@ export default function StudentsHub() {
 
               {/* --- BACK CARD PREVIEW --- */}
               <div className="flex flex-col items-center gap-3">
-                <span className="text-purple-600 font-bold tracking-widest text-sm">
+                <span className="text-amber-600 font-bold tracking-widest text-sm">
                   NEW CARD BACK (Variant {promotedStudent.card_variant})
                 </span>
                 <div
@@ -320,7 +320,7 @@ export default function StudentsHub() {
         <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8 bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200">
           <div>
             <div className="flex items-center gap-4 mb-2">
-              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-2xl shadow-inner border border-indigo-100">
+              <div className="w-12 h-12 bg-slate-50 text-slate-800 rounded-xl flex items-center justify-center text-2xl shadow-inner border border-slate-200">
                 🎓
               </div>
               <h1 className="text-3xl font-black text-slate-800 tracking-tight">
@@ -338,7 +338,7 @@ export default function StudentsHub() {
               placeholder="Search names, IDs, or grades..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full md:w-72 p-3 rounded-xl border border-slate-200 outline-none focus:border-indigo-500 shadow-sm font-medium"
+              className="w-full md:w-72 p-3 rounded-xl border border-slate-200 outline-none focus:border-amber-500 shadow-sm font-medium"
             />
           </div>
         </header>
@@ -367,7 +367,7 @@ export default function StudentsHub() {
         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
           {isLoading ? (
             <div className="flex flex-col items-center justify-center h-64">
-              <div className="w-10 h-10 border-4 border-slate-200 border-t-indigo-600 rounded-full animate-spin mb-4"></div>
+              <div className="w-10 h-10 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin mb-4"></div>
               <p className="text-slate-400 font-bold animate-pulse">
                 Loading Roster...
               </p>
@@ -390,6 +390,7 @@ export default function StudentsHub() {
                     <th className="p-4 font-bold">Student Details</th>
                     <th className="p-4 font-bold">Short ID</th>
                     <th className="p-4 font-bold">Grade</th>
+                    <th className="p-4 font-bold">Contact</th>
                     <th className="p-4 font-bold">Class Cycle</th>
                     <th className="p-4 font-bold text-right">Actions</th>
                   </tr>
@@ -403,7 +404,7 @@ export default function StudentsHub() {
                       <td className="p-4">
                         <div className="flex items-center gap-3">
                           <div
-                            className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-xs border-2 ${student.is_active ? "bg-indigo-50 text-indigo-600 border-indigo-100" : "bg-slate-100 text-slate-400 border-slate-200"}`}
+                            className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-xs border-2 ${student.is_active ? "bg-amber-50 text-amber-600 border-amber-100" : "bg-slate-100 text-slate-400 border-slate-200"}`}
                           >
                             {SNT(student.full_name)
                               .substring(0, 2)
@@ -431,6 +432,10 @@ export default function StudentsHub() {
                         {student.grade_batch}
                       </td>
 
+                      <td className="p-4 font-bold text-slate-500 text-xs">
+                        {student.contact_number || "—"}
+                      </td>
+
                       <td className="p-4">
                         {student.cycle_classes >= 8 ? (
                           <div className="bg-red-50 border border-red-200 text-red-700 px-3 py-1.5 rounded-lg flex items-center justify-between w-28 md:w-32 shadow-sm">
@@ -451,7 +456,7 @@ export default function StudentsHub() {
                             </div>
                             <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden shadow-inner">
                               <div
-                                className="h-full bg-blue-500 rounded-full transition-all duration-500"
+                                className="h-full bg-slate-800 rounded-full transition-all duration-500"
                                 style={{
                                   width: `${((student.cycle_classes || 0) / 8) * 100}%`,
                                 }}
@@ -481,7 +486,7 @@ export default function StudentsHub() {
                                       setNewGrade(student.grade_batch);
                                       setOpenMenuId(null);
                                     }}
-                                    className="w-full text-left px-3 py-2.5 hover:bg-purple-50 text-purple-700 font-bold text-xs rounded-xl transition-colors flex items-center gap-3"
+                                    className="w-full text-left px-3 py-2.5 hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl transition-colors flex items-center gap-3"
                                   >
                                     <span className="text-base">🎲</span> Promote
                                   </button>
@@ -491,7 +496,7 @@ export default function StudentsHub() {
                                       requestReprint(student.id, SNT(student.full_name));
                                       setOpenMenuId(null);
                                     }}
-                                    className="w-full text-left px-3 py-2.5 hover:bg-blue-50 text-blue-700 font-bold text-xs rounded-xl transition-colors flex items-center gap-3"
+                                    className="w-full text-left px-3 py-2.5 hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl transition-colors flex items-center gap-3"
                                   >
                                     <span className="text-base">🖨️</span> Reprint
                                   </button>

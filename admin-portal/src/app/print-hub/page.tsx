@@ -93,7 +93,7 @@ export default function PrintHub() {
         {/* HEADER */}
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200">
           <div className="flex items-center gap-5">
-            <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl shadow-inner border border-blue-100">
+            <div className="w-16 h-16 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-3xl shadow-inner border border-amber-100">
               🖨️
             </div>
             <div>
@@ -109,7 +109,7 @@ export default function PrintHub() {
             <button 
               onClick={() => window.print()} 
               disabled={queue.length === 0}
-              className="flex-1 md:flex-none px-8 py-3 bg-blue-600 text-white font-black rounded-xl hover:bg-blue-500 hover:-translate-y-0.5 transition-all shadow-lg shadow-blue-600/30 disabled:opacity-50 disabled:hover:translate-y-0 disabled:shadow-none"
+              className="flex-1 md:flex-none px-8 py-3 bg-slate-900 text-white font-black rounded-xl hover:bg-slate-800 hover:-translate-y-0.5 transition-all shadow-lg shadow-slate-900/30 disabled:opacity-50 disabled:hover:translate-y-0 disabled:shadow-none"
             >
               Print Queue
             </button>
@@ -118,7 +118,7 @@ export default function PrintHub() {
 
         {isLoading ? (
           <div className="flex flex-col items-center justify-center h-64 space-y-4">
-            <div className="w-12 h-12 border-4 border-slate-200 border-t-blue-600 rounded-full animate-spin"></div>
+            <div className="w-12 h-12 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
             <p className="text-slate-400 font-bold animate-pulse">Fetching Print Queue...</p>
           </div>
         ) : queue.length === 0 ? (
@@ -135,7 +135,7 @@ export default function PrintHub() {
             {/* STATS ROW */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-indigo-50 flex items-center justify-center text-xl">👥</div>
+                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl">👥</div>
                 <div>
                   <p className="text-sm font-bold text-slate-400 uppercase tracking-wider">Students Queued</p>
                   <p className="text-3xl font-black text-slate-800">{queue.length}</p>
@@ -149,7 +149,7 @@ export default function PrintHub() {
                 </div>
               </div>
               <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-xl">⚙️</div>
+                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl">⚙️</div>
                 <div>
                   <p className="text-sm font-bold text-slate-400 uppercase tracking-wider">Print Settings</p>
                   <p className="text-sm font-bold text-slate-700 mt-1">No Margins • Duplex On</p>
@@ -164,7 +164,7 @@ export default function PrintHub() {
                 <button 
                   onClick={markAsPrinted} 
                   disabled={isMarking}
-                  className="px-4 py-2 bg-emerald-100 text-emerald-700 font-bold text-sm rounded-lg hover:bg-emerald-200 transition-colors disabled:opacity-50"
+                  className="px-4 py-2 bg-slate-900 text-white font-bold text-sm rounded-lg hover:bg-slate-800 transition-colors disabled:opacity-50"
                 >
                   {isMarking ? "Clearing..." : "✓ Mark All as Printed"}
                 </button>
