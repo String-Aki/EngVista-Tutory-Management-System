@@ -146,6 +146,14 @@ export default function AttendanceScanner({
             .insert(logPayload);
           if (logError) throw logError;
 
+          // --- LOG XP ---
+          await supabase.from("xp_logs").insert({
+            student_id: student.id,
+            amount: 10,
+            reason: "Attendance",
+            note: "Checked in via QR Scanner",
+          });
+
           const updatedCycle = (student.cycle_classes || 0) + 1;
 
           await supabase

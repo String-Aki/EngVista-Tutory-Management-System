@@ -3,3 +3,4 @@ Extras/
 Tests/
 icms-student-portal/src/app/sandbox/page.tsx
 Reference/
+database_updates.sql

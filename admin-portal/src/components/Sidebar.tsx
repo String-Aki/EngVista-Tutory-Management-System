@@ -13,6 +13,7 @@ import {
   CheckSquare,
   CreditCard,
   LogOut,
+  Trophy,
 } from "lucide-react";
 
 export default function Sidebar() {
@@ -40,6 +41,7 @@ export default function Sidebar() {
     { name: "Students Hub", href: "/students", icon: GraduationCap },
     { name: "Attendance", href: "/attendance", icon: CheckSquare },
     { name: "Ledger", href: "/dashboard/ledger", icon: CreditCard },
+    { name: "Leaderboard", href: "/dashboard/leaderboard", icon: Trophy },
   ];
 
   if (!isMounted) return null;

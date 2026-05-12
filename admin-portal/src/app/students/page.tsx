@@ -28,6 +28,11 @@ export default function StudentsHub() {
   const [promotedStudent, setPromotedStudent] = useState<any | null>(null);
   const [previewQrUrl, setPreviewQrUrl] = useState("");
 
+  const [xpModal, setXpModal] = useState<{ id: string; name: string } | null>(null);
+  const [xpAmount, setXpAmount] = useState<number | "">("");
+  const [xpNote, setXpNote] = useState("");
+  const [isAwardingXp, setIsAwardingXp] = useState(false);
+
   // New state to track which row's dropdown is currently open
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
@@ -134,6 +139,34 @@ export default function StudentsHub() {
     }
   };
 
+  const handleAwardXp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!xpModal || !xpAmount) return;
+    
+    setIsAwardingXp(true);
+    try {
+      const { error } = await supabase.from("xp_logs").insert({
+        student_id: xpModal.id,
+        amount: Number(xpAmount),
+        reason: "Admin Reward",
+        note: xpNote
+      });
+
+      if (error) throw error;
+      
+      alert(`Successfully awarded ${xpAmount} XP!`);
+      setXpModal(null);
+      setXpAmount("");
+      setXpNote("");
+      fetchStudents();
+    } catch (err) {
+      console.error("Failed to award XP:", err);
+      alert("Error awarding XP. Check console.");
+    } finally {
+      setIsAwardingXp(false);
+    }
+  };
+
 
 
   const filteredStudents = students.filter(
@@ -205,6 +238,76 @@ export default function StudentsHub() {
                   className="flex-1 py-3 px-4 bg-slate-900 text-white font-black rounded-xl hover:bg-slate-800 shadow-lg shadow-slate-900/30 transition-all disabled:opacity-50"
                 >
                   {isUpdating ? "Promoting..." : "Promote & Queue"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL 1B: AWARD XP */}
+      {xpModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md border border-slate-200 animate-in zoom-in-95 duration-200">
+            <div className="flex justify-between items-start mb-6">
+              <div>
+                <h2 className="text-2xl font-black text-slate-800">
+                  Award XP
+                </h2>
+                <p className="text-sm font-bold text-slate-500 mt-1">
+                  {xpModal.name}
+                </p>
+              </div>
+              <div className="text-4xl">🌟</div>
+            </div>
+
+            <form onSubmit={handleAwardXp} className="space-y-6">
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-2">
+                  Amount
+                </label>
+                <input
+                  type="number"
+                  required
+                  value={xpAmount}
+                  onChange={(e) => setXpAmount(e.target.value ? Number(e.target.value) : "")}
+                  className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-amber-500 focus:ring-4 focus:ring-amber-500/20 outline-none transition-all text-lg font-bold text-slate-800"
+                  placeholder="e.g. 50"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-2">
+                  Note
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={xpNote}
+                  onChange={(e) => setXpNote(e.target.value)}
+                  className="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-amber-500 focus:ring-4 focus:ring-amber-500/20 outline-none transition-all text-lg font-bold text-slate-800"
+                  placeholder="e.g. Excellent participation"
+                />
+              </div>
+
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setXpModal(null);
+                    setXpAmount("");
+                    setXpNote("");
+                  }}
+                  className="flex-1 py-3 px-4 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isAwardingXp || !xpAmount || !xpNote}
+                  className="flex-1 py-3 px-4 bg-amber-500 text-white font-black rounded-xl hover:bg-amber-600 shadow-lg shadow-amber-500/30 transition-all disabled:opacity-50"
+                >
+                  {isAwardingXp ? "Awarding..." : "Award XP"}
                 </button>
               </div>
             </form>
@@ -387,7 +490,7 @@ export default function StudentsHub() {
                     <th className="p-4 font-bold">Student Details</th>
                     <th className="p-4 font-bold">Short ID</th>
                     <th className="p-4 font-bold">Grade</th>
-                    <th className="p-4 font-bold">Contact</th>
+                    <th className="p-4 font-bold">Total XP</th>
                     <th className="p-4 font-bold">Sessions</th>
                     <th className="p-4 font-bold text-right">Actions</th>
                   </tr>
@@ -429,8 +532,10 @@ export default function StudentsHub() {
                         {student.grade_batch}
                       </td>
 
-                      <td className="p-4 font-bold text-slate-500 text-xs">
-                        {student.contact_number || "—"}
+                      <td className="p-4">
+                        <span className="text-sm font-black text-amber-600 bg-amber-50 border border-amber-100 px-2 py-1 rounded-lg shadow-sm">
+                          {student.total_xp || 0} XP
+                        </span>
                       </td>
 
                       <td className="p-4">
@@ -486,6 +591,16 @@ export default function StudentsHub() {
                                     className="w-full text-left px-3 py-2.5 hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl transition-colors flex items-center gap-3"
                                   >
                                     <span className="text-base">🎲</span> Promote
+                                  </button>
+
+                                  <button
+                                    onClick={() => {
+                                      setXpModal({ id: student.id, name: SNT(student.full_name) });
+                                      setOpenMenuId(null);
+                                    }}
+                                    className="w-full text-left px-3 py-2.5 hover:bg-amber-50 text-slate-700 font-bold text-xs rounded-xl transition-colors flex items-center gap-3"
+                                  >
+                                    <span className="text-base">🌟</span> Award XP
                                   </button>
 
                                   <button
