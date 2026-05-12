@@ -257,7 +257,7 @@ export default function PrintHub() {
                     <div key={`back-${i}`} style={{ width: "324px", height: "204px", position: "relative", overflow: "hidden" }}>
                       {item ? (
                         /* eslint-disable-next-line @next/next/no-img-element */
-                        <img src="/id-back-1.jpg" alt="Back" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, objectFit: "cover" }} />
+                        <img src="/id-back.png" alt="Back" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, objectFit: "cover" }} />
                       ) : (
                         <div style={{ width: "324px", height: "204px" }}></div>
                       )}

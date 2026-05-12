@@ -195,7 +195,7 @@ export default function EnrollStudentForm() {
               <div className="flex flex-col items-center gap-3">
                 <span className="text-amber-500 font-black uppercase tracking-[0.2em] text-[10px] bg-amber-50 border border-amber-100 px-3 py-1 rounded-full">Back Preview</span>
                 <div className="relative bg-white overflow-hidden shadow-2xl rounded-sm ring-1 ring-slate-200/50" style={{ width: "324px", height: "204px" }}>
-                  <img src="/id-back-1.png" alt="Back" className="absolute inset-0 w-full h-full object-cover z-0" />
+                  <img src="/id-back.png" alt="Back" className="absolute inset-0 w-full h-full object-cover z-0" />
                 </div>
               </div>
             </div>

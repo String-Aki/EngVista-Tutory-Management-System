@@ -65,7 +65,7 @@ export default function AdminAuthPage() {
         <div className="flex justify-center mb-8">
           <div className="w-24 h-24 bg-white border border-amber-100 rounded-2xl flex items-center justify-center p-3 shadow-[0_0_40px_-10px_rgba(245,158,11,0.4)] relative overflow-hidden transform -translate-y-4">
             <div className="relative w-full h-full rounded-xl overflow-hidden">
-              <Image src="/icon.png" alt="ENGVISTA Logo" fill sizes="96px" className="object-contain" />
+              <Image src="/icon.png" alt="ENGVISTA Logo" fill sizes="96px" className="object-contain" priority />
             </div>
           </div>
         </div>
