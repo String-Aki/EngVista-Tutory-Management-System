@@ -346,7 +346,7 @@ export default function AttendanceKiosk() {
                             Syncing Later
                           </p>
                         ) : (
-                          <p className="text-sm font-black text-emerald-950 bg-emerald-400 px-4 py-1.5 rounded-full shadow-[0_0_20px_rgba(52,211,153,0.4)] animate-[bounce_1s_ease-in-out_2]">
+                          <p className="text-sm font-black text-emerald-950 bg-emerald-400 px-4 py-1.5 rounded-full shadow-[0_0_20px_rgba(52,211,153,0.4)] animate-pulse">
                             Present ✅
                           </p>
                         )}

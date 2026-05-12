@@ -142,7 +142,7 @@ export default function LeaderboardPage() {
                         <p className="text-[10px] font-bold text-slate-400 tracking-widest uppercase mt-0.5">{student.grade_batch || "No Batch"}</p>
                       </td>
                       <td className="p-4">
-                        <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border ${currentRank.bg} ${currentRank.text} ${currentRank.border}`}>
+                        <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border ${currentRank.color} ${currentRank.text} ${currentRank.border}`}>
                           <span className="text-sm">{currentRank.icon}</span>
                           <span className="text-[11px] font-black tracking-widest uppercase">{currentRank.name}</span>
                         </div>
