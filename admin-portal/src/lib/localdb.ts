@@ -7,14 +7,14 @@ export interface OfflineScan {
   status: string;
 }
 
-export class ICMSLocalDB extends Dexie {
+export class EVMSLocalDB extends Dexie {
   offlineScans!: Table<OfflineScan>;
   constructor() {
-    super("icms_local_db");
+    super("evms_local_db");
     this.version(1).stores({
       offlineScans: "++id, student_id, scanned_at",
     });
   }
 }
 
-export const localDB = new ICMSLocalDB();
+export const localDB = new EVMSLocalDB();

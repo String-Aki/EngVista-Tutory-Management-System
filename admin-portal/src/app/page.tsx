@@ -14,14 +14,12 @@ export default function AdminAuthPage() {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        router.push("/dashboard");
-      }
+    // Explicitly sign out so the user is forced to enter credentials every time they visit the login page
+    const clearSession = async () => {
+      await supabase.auth.signOut();
     };
-    checkSession();
-  }, [router]);
+    clearSession();
+  }, []);
 
   const handleAdminLogin = async (e?: React.FormEvent) => {
     if (e) {
@@ -87,7 +85,7 @@ export default function AdminAuthPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-slate-50/50 border border-slate-200 focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-500/10 rounded-2xl px-5 py-4 text-slate-800 font-bold outline-none transition-all placeholder:text-slate-400 shadow-sm"
-                placeholder="admin@engvista.com"
+                placeholder="Admin@EVMS.eng"
               />
               <div className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-amber-500 transition-colors pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
