@@ -102,14 +102,14 @@ export default function PrintHub() {
             </div>
           </div>
           
-          <div className="flex w-full md:w-auto gap-3">
-            <button onClick={fetchQueue} className="px-5 py-3 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-colors">
+          <div className="flex w-full md:w-auto md:flex-shrink-0 gap-3">
+            <button onClick={fetchQueue} className="whitespace-nowrap px-5 py-3 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-colors">
               ↻ Refresh
             </button>
             <button 
               onClick={() => window.print()} 
               disabled={queue.length === 0}
-              className="flex-1 md:flex-none px-8 py-3 bg-slate-900 text-white font-black rounded-xl hover:bg-slate-800 hover:-translate-y-0.5 transition-all shadow-lg shadow-slate-900/30 disabled:opacity-50 disabled:hover:translate-y-0 disabled:shadow-none"
+              className="whitespace-nowrap flex-1 md:flex-none px-8 py-3 bg-slate-900 text-white font-black rounded-xl hover:bg-slate-800 hover:-translate-y-0.5 transition-all shadow-lg shadow-slate-900/30 disabled:opacity-50 disabled:hover:translate-y-0 disabled:shadow-none"
             >
               Print Queue
             </button>

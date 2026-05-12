@@ -48,16 +48,16 @@ export default function AdminAuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center p-4 sm:p-8 font-sans relative overflow-hidden bg-slate-950">
+    <div className="min-h-screen flex flex-col justify-center items-center p-4 sm:p-8 font-sans relative overflow-hidden bg-slate-950 [color-scheme:light]">
       
-      {/* Rich Mesh Gradient Background */}
-      <div className="absolute inset-0 z-0 opacity-40">
-        <div className="absolute top-[-10%] left-[-10%] w-[50rem] h-[50rem] bg-indigo-600 rounded-full mix-blend-screen filter blur-[150px] animate-pulse"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50rem] h-[50rem] bg-amber-500 rounded-full mix-blend-screen filter blur-[150px] animate-pulse" style={{ animationDelay: "2s" }}></div>
-        <div className="absolute top-[40%] left-[40%] w-[30rem] h-[30rem] bg-emerald-600 rounded-full mix-blend-screen filter blur-[120px] animate-pulse" style={{ animationDelay: "4s" }}></div>
+      {/* Rich Mesh Gradient Background — pointer-events-none prevents touch-event stealing in PWA mode */}
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[50rem] h-[50rem] bg-indigo-600 rounded-full mix-blend-screen filter blur-[150px] animate-pulse pointer-events-none"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50rem] h-[50rem] bg-amber-500 rounded-full mix-blend-screen filter blur-[150px] animate-pulse pointer-events-none" style={{ animationDelay: "2s" }}></div>
+        <div className="absolute top-[40%] left-[40%] w-[30rem] h-[30rem] bg-emerald-600 rounded-full mix-blend-screen filter blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: "4s" }}></div>
       </div>
 
-      <div className="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-[2rem] shadow-2xl p-8 sm:p-10 relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700 border border-white/20 border-t-[6px] border-t-amber-500">
+      <div className="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-[2rem] shadow-2xl p-8 sm:p-10 relative z-20 animate-in fade-in slide-in-from-bottom-8 duration-700 border border-white/20 border-t-[6px] border-t-amber-500">
         
         {/* Header / Logo */}
         <div className="flex justify-center mb-8">
@@ -69,7 +69,7 @@ export default function AdminAuthPage() {
         </div>
         
         <div className="text-center mb-8 -mt-6">
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900">Welcome Back</h1>
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-2 text-slate-900">Welcome Back</h1>
           <p className="text-slate-500 font-medium text-sm">Sign in to your ENGVISTA workspace</p>
         </div>
 
@@ -84,7 +84,7 @@ export default function AdminAuthPage() {
                 suppressHydrationWarning
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-slate-50/50 border border-slate-200 focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-500/10 rounded-2xl px-5 py-4 text-slate-800 font-bold outline-none transition-all placeholder:text-slate-400 shadow-sm"
+                className="w-full appearance-none bg-slate-50/50 border border-slate-200 focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-500/10 rounded-2xl px-5 py-4 text-slate-800 font-bold outline-none transition-all placeholder:text-slate-400 shadow-sm cursor-text"
                 placeholder="Admin@evms.eng"
               />
               <div className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-amber-500 transition-colors pointer-events-none">
@@ -104,7 +104,7 @@ export default function AdminAuthPage() {
               suppressHydrationWarning
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-slate-50/50 border border-slate-200 focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-500/10 rounded-2xl px-5 py-4 text-slate-800 font-bold outline-none transition-all placeholder:text-slate-300 shadow-sm font-sans text-xl tracking-[0.2em]"
+              className="w-full appearance-none bg-slate-50/50 border border-slate-200 focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-500/10 rounded-2xl px-5 py-4 text-slate-800 font-bold outline-none transition-all placeholder:text-slate-300 shadow-sm font-sans text-xl tracking-[0.2em] cursor-text"
               placeholder="••••••••"
             />
           </div>
@@ -118,7 +118,7 @@ export default function AdminAuthPage() {
           <button 
             type="submit" 
             disabled={isAuthenticating}
-            className="w-full py-4 mt-4 text-white font-black rounded-xl transition-all shadow-[0_8px_30px_rgb(245,158,11,0.3)] hover:shadow-[0_8px_30px_rgb(245,158,11,0.5)] active:scale-95 flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 disabled:opacity-50 disabled:cursor-not-allowed text-base"
+            className="w-full appearance-none py-4 mt-4 bg-amber-500 bg-gradient-to-r from-amber-500 to-amber-600 hover:bg-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-black rounded-xl transition-all shadow-[0_8px_30px_rgb(245,158,11,0.3)] hover:shadow-[0_8px_30px_rgb(245,158,11,0.5)] active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-base"
           >
             {isAuthenticating ? (
               <>

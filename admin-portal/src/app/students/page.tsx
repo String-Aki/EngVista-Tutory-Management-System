@@ -464,7 +464,7 @@ export default function StudentsHub() {
           </button>
         </div>
 
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-visible">
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
           {isLoading ? (
             <div className="flex flex-col items-center justify-center h-64">
               <div className="w-10 h-10 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin mb-4"></div>
@@ -483,8 +483,8 @@ export default function StudentsHub() {
               </p>
             </div>
           ) : (
-            <div className="overflow-visible custom-scrollbar">
-              <table className="w-full text-left border-collapse">
+            <div className="overflow-x-auto custom-scrollbar pb-32">
+              <table className="w-full min-w-[800px] text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-50 text-slate-400 text-xs uppercase tracking-widest border-b border-slate-100">
                     <th className="p-4 font-bold">Student Details</th>
@@ -532,7 +532,7 @@ export default function StudentsHub() {
                         {student.grade_batch}
                       </td>
 
-                      <td className="p-4">
+                      <td className="p-4 whitespace-nowrap">
                         <span className="text-sm font-black text-amber-600 bg-amber-50 border border-amber-100 px-2 py-1 rounded-lg shadow-sm">
                           {student.total_xp || 0} XP
                         </span>

@@ -231,7 +231,7 @@ export default function EnrollStudentForm() {
           {/* Date of Enrollment - "Today" button removed and styling updated */}
           <div>
             <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Date of Enrollment</label>
-            <input type="date" required className="w-full bg-white border-2 border-slate-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 rounded-xl px-4 py-3 text-slate-800 font-bold outline-none transition-all" value={enrollDate} onChange={(e) => setEnrollDate(e.target.value)} />
+            <input type="date" required className="block w-full appearance-none bg-white border-2 border-slate-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 rounded-xl px-4 py-3 text-slate-800 font-bold outline-none transition-all" value={enrollDate} onChange={(e) => setEnrollDate(e.target.value)} />
           </div>
 
           <div>
