@@ -39,7 +39,7 @@ export default function Sidebar() {
     { name: "Schedule", href: "/schedule", icon: Calendar },
     { name: "Students Hub", href: "/students", icon: GraduationCap },
     { name: "Attendance", href: "/attendance", icon: CheckSquare },
-    { name: "Financials", href: "/payments", icon: CreditCard },
+    { name: "Ledger", href: "/dashboard/ledger", icon: CreditCard },
   ];
 
   if (!isMounted) return null;
@@ -61,7 +61,7 @@ export default function Sidebar() {
         </div>
         <div>
           <h1 className="text-xl font-bold text-navy-900 tracking-tight leading-none line-clamp-2">
-            English Tutory App
+            ENGVISTA
           </h1>
           <p className="text-gold-600 font-bold text-[10px] tracking-[0.1em] uppercase mt-1">
             Admin Portal

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Sidebar from "@/components//Sidebar";
+import Sidebar from "@/components/Sidebar";
+import PageWrapper from "@/components/PageWrapper";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,12 +24,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "English Tutory App Admin",
-  description: "Management System for English Tutory App",
+  title: "ENGVISTA Admin",
+  description: "Management System for ENGVISTA",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    title: "English Tutory App",
+    title: "ENGVISTA",
     statusBarStyle: "black-translucent",
   },
   icons: {
@@ -69,9 +70,9 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-slate-50 min-h-screen custom-scrollbar text-navy-900">
         <Sidebar />
-        <div className="pb-20 md:pb-0 md:ml-64 lg:ml-72 flex flex-col min-h-screen">
+        <PageWrapper>
           {children}
-        </div>
+        </PageWrapper>
       </body>
     </html>
   );

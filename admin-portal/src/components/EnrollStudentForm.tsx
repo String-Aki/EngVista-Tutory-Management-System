@@ -14,7 +14,6 @@ interface EnrolledStudent {
   fullName: string;
   gradeBatch: string;
   shortId: string;
-  variant: number;
   pin: string;
 }
 
@@ -68,7 +67,7 @@ export default function EnrollStudentForm() {
       const dayStr = enrollDate.split("-")[2];
       const monthLetters = getMonthLetters(enrollDate);
       const dateCode = `${dayStr}${monthLetters}`;
-      const idPrefix = `ICMS-${medium}-${dateCode}`;
+      const idPrefix = `EVMS-${medium}-${dateCode}`;
       
       const { count, error: countError } = await supabase
         .from("students")
@@ -78,7 +77,6 @@ export default function EnrollStudentForm() {
 
       const sequence = getSequenceString(count || 0);
       const finalShortId = `${idPrefix}${sequence}`;
-      const rolledVariant = Math.floor(Math.random() * 6) + 1; 
 
       const { data: studentData, error: insertError } = await supabase
         .from("students")
@@ -87,7 +85,6 @@ export default function EnrollStudentForm() {
             contact_number: contactNumber,
             grade_batch: gradeBatch,
             qr_code: finalShortId,
-            card_variant: rolledVariant,
             enrollment_date: enrollDate,
             pin_code: generatedPin,
         }])
@@ -126,7 +123,6 @@ export default function EnrollStudentForm() {
         fullName,
         gradeBatch,
         shortId: finalShortId,
-        variant: rolledVariant,
         pin: generatedPin,
       });
 
@@ -197,9 +193,9 @@ export default function EnrollStudentForm() {
 
               {/* --- BACK CARD --- */}
               <div className="flex flex-col items-center gap-3">
-                <span className="text-amber-500 font-black uppercase tracking-[0.2em] text-[10px] bg-amber-50 border border-amber-100 px-3 py-1 rounded-full">Back Preview (Variant {newStudent.variant})</span>
+                <span className="text-amber-500 font-black uppercase tracking-[0.2em] text-[10px] bg-amber-50 border border-amber-100 px-3 py-1 rounded-full">Back Preview</span>
                 <div className="relative bg-white overflow-hidden shadow-2xl rounded-sm ring-1 ring-slate-200/50" style={{ width: "324px", height: "204px" }}>
-                  <img src={`/id-back-${newStudent.variant}.jpg`} alt="Back" className="absolute inset-0 w-full h-full object-cover z-0" />
+                  <img src="/id-back-1.png" alt="Back" className="absolute inset-0 w-full h-full object-cover z-0" />
                 </div>
               </div>
             </div>

@@ -51,7 +51,7 @@ export default function AttendanceHub() {
     // 1. Fetch all active students
     const { data: studentsData } = await supabase
       .from("students")
-      .select("id, full_name, grade_batch, qr_code, total_xp, cycle_classes")
+      .select("id, full_name, grade_batch, qr_code, sessions_attended")
       .eq("is_active", true)
       .order("full_name", { ascending: true });
 
@@ -112,7 +112,7 @@ export default function AttendanceHub() {
     // 3. Build the Attendance Query
     let query = supabase
       .from("attendance_logs")
-      .select(`id, scanned_at, status, student_id, student:student_id ( full_name, grade_batch, qr_code )`)
+      .select(`id, scanned_at, status, student_id, student:students ( full_name, grade_batch, qr_code )`)
       .order("scanned_at", { ascending: false });
 
     const today = new Date();
@@ -188,24 +188,10 @@ export default function AttendanceHub() {
         status: manualStatus === "absent" ? "absent" : "manual",
       }]);
 
-      // Only award XP for present entries
-      if (manualStatus === "present") {
-        await supabase.from("xp_transactions").insert([{
-          student_id: student.id,
-          amount: 10,
-          reason: "Manual Class Check-In",
-        }]);
-        await supabase
-          .from("students")
-          .update({ total_xp: student.total_xp + 10, cycle_classes: (student.cycle_classes || 0) + 1 })
-          .eq("id", student.id);
-      } else {
-        // Absent — still counts toward total classes, no XP
-        await supabase
-          .from("students")
-          .update({ cycle_classes: (student.cycle_classes || 0) + 1 })
-          .eq("id", student.id);
-      }
+      await supabase
+        .from("students")
+        .update({ sessions_attended: (student.sessions_attended || 0) + 1 })
+        .eq("id", student.id);
 
       setManualModal(false);
       setSelectedStudentId("");
@@ -324,8 +310,8 @@ export default function AttendanceHub() {
                   : "bg-blue-50 border-blue-100 text-blue-800"
               }`}>
                 {manualStatus === "absent"
-                  ? <>This will be logged as <strong className="font-black">absent</strong>. No XP will be awarded.</>
-                  : <>They will receive <strong className="font-black">+10 Base XP</strong> and their cycle counter will increment by 1.</>
+                  ? <>This will be logged as <strong className="font-black">absent</strong>. Their session counter will still increment by 1.</>
+                  : <>This will be logged as <strong className="font-black">present</strong>. Their session counter will increment by 1.</>
                 }
               </div>
 

@@ -91,12 +91,11 @@ export default function StudentsHub() {
   const handlePromotion = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsUpdating(true);
-    const rolledVariant = Math.floor(Math.random() * 6) + 1;
 
     try {
       const { error: updateError } = await supabase
         .from("students")
-        .update({ grade_batch: newGrade, card_variant: rolledVariant })
+        .update({ grade_batch: newGrade })
         .eq("id", promotionModal.id);
 
       if (updateError) throw updateError;
@@ -123,7 +122,6 @@ export default function StudentsHub() {
       setPromotedStudent({
         ...promotionModal,
         grade_batch: newGrade,
-        card_variant: rolledVariant,
       });
 
       setPromotionModal(null);
@@ -187,8 +185,7 @@ export default function StudentsHub() {
 
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                 <p className="text-sm text-slate-600 font-medium text-center">
-                  Saving will randomly generate a new card back variant and
-                  queue this student for printing.
+                  Saving will queue this student for printing.
                 </p>
               </div>
 
@@ -207,7 +204,7 @@ export default function StudentsHub() {
                   }
                   className="flex-1 py-3 px-4 bg-slate-900 text-white font-black rounded-xl hover:bg-slate-800 shadow-lg shadow-slate-900/30 transition-all disabled:opacity-50"
                 >
-                  {isUpdating ? "Rolling..." : "Promote & Re-roll"}
+                  {isUpdating ? "Promoting..." : "Promote & Queue"}
                 </button>
               </div>
             </form>
@@ -227,7 +224,7 @@ export default function StudentsHub() {
                 Promoted to Grade {promotedStudent.grade_batch}!
               </h2>
               <p className="text-amber-600 font-bold mt-2 text-lg">
-                New card back unlocked and queued for printing.
+                Student queued for ID reprint.
               </p>
             </div>
 
@@ -284,7 +281,7 @@ export default function StudentsHub() {
               {/* --- BACK CARD PREVIEW --- */}
               <div className="flex flex-col items-center gap-3">
                 <span className="text-amber-600 font-bold tracking-widest text-sm">
-                  NEW CARD BACK (Variant {promotedStudent.card_variant})
+                  NEW CARD BACK
                 </span>
                 <div
                   className="relative bg-white overflow-hidden shadow-2xl rounded-sm transform transition-transform hover:scale-105"
@@ -292,7 +289,7 @@ export default function StudentsHub() {
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={`/id-back-${promotedStudent.card_variant}.jpg`}
+                    src="/id-back-1.jpg"
                     alt="Back"
                     className="absolute inset-0 w-full h-full object-cover z-0"
                   />
@@ -364,7 +361,7 @@ export default function StudentsHub() {
           </button>
         </div>
 
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-visible">
           {isLoading ? (
             <div className="flex flex-col items-center justify-center h-64">
               <div className="w-10 h-10 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin mb-4"></div>
@@ -383,7 +380,7 @@ export default function StudentsHub() {
               </p>
             </div>
           ) : (
-            <div className="overflow-x-auto custom-scrollbar">
+            <div className="overflow-visible custom-scrollbar">
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-50 text-slate-400 text-xs uppercase tracking-widest border-b border-slate-100">
@@ -391,7 +388,7 @@ export default function StudentsHub() {
                     <th className="p-4 font-bold">Short ID</th>
                     <th className="p-4 font-bold">Grade</th>
                     <th className="p-4 font-bold">Contact</th>
-                    <th className="p-4 font-bold">Class Cycle</th>
+                    <th className="p-4 font-bold">Sessions</th>
                     <th className="p-4 font-bold text-right">Actions</th>
                   </tr>
                 </thead>
@@ -437,13 +434,13 @@ export default function StudentsHub() {
                       </td>
 
                       <td className="p-4">
-                        {student.cycle_classes >= 8 ? (
+                        {student.sessions_attended >= 8 ? (
                           <div className="bg-red-50 border border-red-200 text-red-700 px-3 py-1.5 rounded-lg flex items-center justify-between w-28 md:w-32 shadow-sm">
                             <span className="text-xs font-black tracking-wider uppercase">
                               Fee Due
                             </span>
                             <span className="font-mono font-bold text-sm text-red-500">
-                              8/8
+                              {student.sessions_attended}/8
                             </span>
                           </div>
                         ) : (
@@ -451,14 +448,14 @@ export default function StudentsHub() {
                             <div className="flex justify-between text-xs font-bold mb-1.5">
                               <span className="text-slate-500">Cycle</span>
                               <span className="text-slate-700">
-                                {student.cycle_classes || 0}/8
+                                {student.sessions_attended || 0}/8
                               </span>
                             </div>
                             <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden shadow-inner">
                               <div
                                 className="h-full bg-slate-800 rounded-full transition-all duration-500"
                                 style={{
-                                  width: `${((student.cycle_classes || 0) / 8) * 100}%`,
+                                  width: `${((student.sessions_attended || 0) / 8) * 100}%`,
                                 }}
                               ></div>
                             </div>

@@ -50,116 +50,101 @@ export default function AdminAuthPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col md:flex-row w-full font-sans">
+    <div className="min-h-screen flex flex-col justify-center items-center p-4 sm:p-8 font-sans relative overflow-hidden bg-slate-950">
       
-      {/* LEFT SIDE: ACADEMY TERMINAL INFO & SCANNER QUICK-LAUNCH */}
-      <div className="w-full md:w-5/12 lg:w-1/2 bg-[#0a0f1c] text-white flex flex-col justify-between p-8 md:p-12 lg:p-16 relative overflow-hidden shrink-0">
-        <div className="absolute top-[-20%] left-[-10%] w-[40rem] h-[40rem] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-        <div className="relative z-10 flex-1 flex flex-col justify-center">
-          <div className="w-24 h-24 lg:w-28 lg:h-28 bg-white rounded-3xl shadow-xl overflow-hidden mb-8 relative p-1.5 flex items-center justify-center">
-             <div className="relative w-full h-full rounded-2xl overflow-hidden">
-               <Image src="/icon.png" alt="ICMS Logo" fill sizes="112px" className="object-cover" />
-             </div>
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-4 leading-tight">
-            ICMS Academy <br />
-            <span className="text-indigo-500">Terminal</span>
-          </h1>
-          
-          <p className="text-slate-300 font-medium text-base lg:text-lg leading-relaxed max-w-sm">
-            Secure management system for administrators, and quick-access scanning for students.
-          </p>
-        </div>
-
-        <div className="relative z-10 mt-12 bg-[#141b2e] border border-slate-700/50 p-6 md:p-8 rounded-3xl backdrop-blur-sm shadow-xl">
-          <div className="w-12 h-12 bg-slate-700/50 rounded-xl flex items-center justify-center text-2xl mb-4 shadow-inner border border-slate-600/50">
-            📷
-          </div>
-          <h2 className="text-xl md:text-2xl font-black text-white mb-2 tracking-tight">Automated Attendance</h2>
-          <p className="text-sm font-medium text-slate-400 mb-6 leading-relaxed">
-            Launch the QR scanner. This mode does not require administrator authentication.
-          </p>
-          <Link 
-            href="/check-in"
-            className="flex items-center justify-center w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-xl transition-all shadow-lg hover:-translate-y-0.5 active:scale-95"
-          >
-            Launch Attendance Scanner →
-          </Link>
-        </div>
+      {/* Rich Mesh Gradient Background */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <div className="absolute top-[-10%] left-[-10%] w-[50rem] h-[50rem] bg-indigo-600 rounded-full mix-blend-screen filter blur-[150px] animate-pulse"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50rem] h-[50rem] bg-amber-500 rounded-full mix-blend-screen filter blur-[150px] animate-pulse" style={{ animationDelay: "2s" }}></div>
+        <div className="absolute top-[40%] left-[40%] w-[30rem] h-[30rem] bg-emerald-600 rounded-full mix-blend-screen filter blur-[120px] animate-pulse" style={{ animationDelay: "4s" }}></div>
       </div>
 
-      {/* RIGHT SIDE: ADMIN LOGIN */}
-      <div className="flex-1 flex flex-col justify-center items-center p-8 md:p-16 lg:p-24 bg-white relative animate-in fade-in slide-in-from-right-8 duration-700">
-        <div className="w-full max-w-md mx-auto flex flex-col items-center pb-8 border-b-0 border-slate-100 mb-8 mt-4">
-          
-          <div className="w-16 h-16 bg-slate-50 border border-slate-100 rounded-full flex items-center justify-center text-2xl shadow-sm mb-6">
-            🔒
-          </div>
-          
-          <div className="mb-10 text-center">
-            <h2 className="text-2xl lg:text-3xl font-black text-[#0f172a] mb-2 tracking-tight">Admin Portal</h2>
-            <p className="text-slate-500 font-medium text-sm">Please authenticate to access the dashboard.</p>
-          </div>
-          
-          <form onSubmit={handleAdminLogin} className="space-y-6 w-full max-w-[340px]">
-            <div>
-              <label className="block text-[11px] font-black text-slate-400 uppercase tracking-[0.10em] mb-2 ml-1">Email Address</label>
-              <div className="relative">
-                <input 
-                  type="email" 
-                  required
-                  suppressHydrationWarning
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-white border border-slate-200 focus:border-slate-800 focus:ring-1 focus:ring-slate-800 rounded-2xl px-5 py-3.5 text-slate-800 font-bold outline-none transition-all placeholder:text-slate-400 shadow-sm"
-                  placeholder="admin@icms.edu"
-                />
-                <div className="absolute right-5 top-1/2 -translate-y-1/2 text-emerald-500 pointer-events-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                    <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-                    <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-                  </svg>
-                </div>
-              </div>
+      <div className="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-[2rem] shadow-2xl p-8 sm:p-10 relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700 border border-white/20 border-t-[6px] border-t-amber-500">
+        
+        {/* Header / Logo */}
+        <div className="flex justify-center mb-8">
+          <div className="w-24 h-24 bg-white border border-amber-100 rounded-2xl flex items-center justify-center p-3 shadow-[0_0_40px_-10px_rgba(245,158,11,0.4)] relative overflow-hidden transform -translate-y-4">
+            <div className="relative w-full h-full rounded-xl overflow-hidden">
+              <Image src="/icon.png" alt="ENGVISTA Logo" fill sizes="96px" className="object-contain" />
             </div>
+          </div>
+        </div>
+        
+        <div className="text-center mb-8 -mt-6">
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900">Welcome Back</h1>
+          <p className="text-slate-500 font-medium text-sm">Sign in to your ENGVISTA workspace</p>
+        </div>
 
-            <div>
-              <label className="block text-[11px] font-black text-slate-400 uppercase tracking-[0.10em] mb-2 ml-1">Password</label>
+        {/* Login Form */}
+        <form onSubmit={handleAdminLogin} className="space-y-6">
+          <div>
+            <label className="block text-[11px] font-black text-slate-400 uppercase tracking-[0.15em] mb-2 ml-1">Email Address</label>
+            <div className="relative group">
               <input 
-                type="password" 
+                type="email" 
                 required
                 suppressHydrationWarning
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-white border border-slate-200 focus:border-slate-800 focus:ring-1 focus:ring-slate-800 rounded-2xl px-5 py-3.5 text-slate-800 font-bold outline-none transition-all placeholder:text-slate-300 shadow-sm font-sans text-xl tracking-[0.2em]"
-                placeholder="••••••••"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full bg-slate-50/50 border border-slate-200 focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-500/10 rounded-2xl px-5 py-4 text-slate-800 font-bold outline-none transition-all placeholder:text-slate-400 shadow-sm"
+                placeholder="admin@engvista.com"
               />
-            </div>
-
-            {errorMsg && (
-              <div className="p-4 rounded-xl text-sm font-bold text-red-600 bg-red-50 border border-red-100 animate-in fade-in text-center">
-                {errorMsg}
+              <div className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-amber-500 transition-colors pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                  <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                  <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+                </svg>
               </div>
-            )}
+            </div>
+          </div>
 
-            <button 
-              type="submit" 
-              disabled={isAuthenticating}
-              className="w-full py-4 mt-2 text-white font-black rounded-xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 bg-[#0a0f1c] hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-[15px]"
-            >
-              {isAuthenticating ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-slate-500 border-t-white rounded-full animate-spin"></div>
-                  <span>Authenticating...</span>
-                </>
-              ) : (
-                "Authorize Session"
-              )}
-            </button>
-          </form>
+          <div>
+            <label className="block text-[11px] font-black text-slate-400 uppercase tracking-[0.15em] mb-2 ml-1">Password</label>
+            <input 
+              type="password" 
+              required
+              suppressHydrationWarning
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full bg-slate-50/50 border border-slate-200 focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-500/10 rounded-2xl px-5 py-4 text-slate-800 font-bold outline-none transition-all placeholder:text-slate-300 shadow-sm font-sans text-xl tracking-[0.2em]"
+              placeholder="••••••••"
+            />
+          </div>
+
+          {errorMsg && (
+            <div className="p-4 rounded-xl text-sm font-bold text-red-600 bg-red-50 border border-red-100 animate-in fade-in text-center">
+              {errorMsg}
+            </div>
+          )}
+
+          <button 
+            type="submit" 
+            disabled={isAuthenticating}
+            className="w-full py-4 mt-4 text-white font-black rounded-xl transition-all shadow-[0_8px_30px_rgb(245,158,11,0.3)] hover:shadow-[0_8px_30px_rgb(245,158,11,0.5)] active:scale-95 flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 disabled:opacity-50 disabled:cursor-not-allowed text-base"
+          >
+            {isAuthenticating ? (
+              <>
+                <div className="w-5 h-5 border-2 border-amber-200 border-t-white rounded-full animate-spin"></div>
+                <span>Authenticating...</span>
+              </>
+            ) : (
+              "Sign In to Dashboard"
+            )}
+          </button>
+        </form>
+
+        {/* Scanner Quick-Launch */}
+        <div className="mt-8 pt-6 border-t border-slate-100/80 text-center">
+          <Link 
+            href="/check-in"
+            className="group inline-flex items-center justify-center gap-3 text-sm font-bold text-slate-500 hover:text-amber-600 transition-colors bg-slate-50 hover:bg-amber-50/50 px-6 py-3 rounded-xl border border-slate-100 hover:border-amber-200 w-full"
+          >
+            <span className="text-xl">📷</span>
+            <span>Launch Attendance Scanner</span>
+            <span className="group-hover:translate-x-1 transition-transform opacity-50 group-hover:opacity-100">→</span>
+          </Link>
         </div>
+
       </div>
     </div>
   );

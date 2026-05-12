@@ -4,7 +4,7 @@ import webpush from "web-push";
 import { supabase } from "@/lib/supabase";
 
 webpush.setVapidDetails(
-  "mailto:admin@icms.edu", 
+  "mailto:admin@engvista.com", 
   process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY as string,
   process.env.VAPID_PRIVATE_KEY as string
 );

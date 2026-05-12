@@ -28,7 +28,7 @@ export default function IDSandbox() {
   const backCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    QRCode.toDataURL("ITMS-TEST89", { margin: 0, width: 200 }).then(setQrDataUrl);
+    QRCode.toDataURL("EVMS-TEST89", { margin: 0, width: 200 }).then(setQrDataUrl);
   }, []);
 
   // 2. The Reusable Export Engine
@@ -105,7 +105,7 @@ export default function IDSandbox() {
 
             <div className="absolute z-10 bottom-[35px] left-[100px]">
                <p className={`text-sm tracking-[0.13em] text-black m-0 leading-none ${prata.className}`}>
-                 ICMS-T-17FB26
+                 EVMS-T-17FB26
                </p>
             </div>
 
@@ -131,7 +131,7 @@ export default function IDSandbox() {
             */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
-              src={`/id-back-${gachaVariant}.jpg`} 
+              src={`/id-back-${gachaVariant}.png`} 
               alt={`Back Background Variant ${gachaVariant}`} 
               className="absolute inset-0 w-full h-full object-cover z-0" 
             />

@@ -33,7 +33,7 @@ export default function MainDashboard() {
       // 1. Fetch Students
       const { data: studentsData, error: studentsError } = await supabase
         .from("students")
-        .select("id, first_name, last_name, is_active, sessions_attended");
+        .select("id, full_name, is_active, sessions_attended");
 
       if (studentsError) throw studentsError;
 
@@ -104,7 +104,7 @@ export default function MainDashboard() {
         .slice(0, 10)
         .map(activity => ({
           ...activity,
-          student: studentMap.get(activity.student_id) || { first_name: 'Unknown', last_name: 'Student' }
+          student: studentMap.get(activity.student_id) || { full_name: 'Unknown Student' }
         }));
 
       setStats({
@@ -152,7 +152,7 @@ export default function MainDashboard() {
               {getGreeting()}, Ma'am.
             </h1>
             <p className="text-slate-500 font-medium text-lg">
-              Here is your English Tutory App overview today.
+              Here is your ENGVISTA overview today.
             </p>
           </div>
           <div className="relative z-10 bg-white border border-slate-200 px-5 py-3 rounded-xl shadow-sm font-bold text-slate-600 flex items-center gap-3">
@@ -257,11 +257,11 @@ export default function MainDashboard() {
                         <div key={student.id} className="p-4 md:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50 transition-colors">
                           <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold">
-                              {student.first_name[0]}{student.last_name[0]}
+                              {(student.full_name || "U")[0].toUpperCase()}
                             </div>
                             <div>
                               <p className="font-bold text-slate-800">
-                                {student.first_name} {student.last_name}
+                                {student.full_name}
                               </p>
                               <p className="text-xs font-medium text-slate-500 flex items-center gap-1 mt-0.5">
                                 <span className="w-2 h-2 rounded-full bg-red-400"></span>
@@ -270,7 +270,7 @@ export default function MainDashboard() {
                             </div>
                           </div>
                           <Link
-                            href={`/payments?studentId=${student.id}`}
+                            href={`/dashboard/ledger?studentId=${student.id}`}
                             className="shrink-0 inline-flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold rounded-xl transition-colors"
                           >
                             Go to Ledger
@@ -313,7 +313,7 @@ export default function MainDashboard() {
                           </div>
                           <div className="pt-2 pb-4">
                             <p className="text-sm font-bold text-slate-800">
-                              {activity.student.first_name} {activity.student.last_name}
+                              {activity.student.full_name}
                               {activity.type === 'payment' 
                                 ? ` paid Rs ${activity.amount}`
                                 : ' checked in for class'}
@@ -337,8 +337,8 @@ export default function MainDashboard() {
                 <Link href="/students" className="px-5 py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-colors flex items-center gap-2 shadow-sm">
                   <Users className="w-4 h-4" /> Students Hub
                 </Link>
-                <Link href="/payments" className="px-5 py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:text-emerald-600 hover:border-emerald-200 transition-colors flex items-center gap-2 shadow-sm">
-                  <CreditCard className="w-4 h-4" /> Financials
+                <Link href="/dashboard/ledger" className="px-5 py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:text-emerald-600 hover:border-emerald-200 transition-colors flex items-center gap-2 shadow-sm">
+                  <CreditCard className="w-4 h-4" /> Ledger
                 </Link>
                 <Link href="/attendance" className="px-5 py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:text-indigo-600 hover:border-indigo-200 transition-colors flex items-center gap-2 shadow-sm">
                   <CheckCircle className="w-4 h-4" /> Attendance Scanner

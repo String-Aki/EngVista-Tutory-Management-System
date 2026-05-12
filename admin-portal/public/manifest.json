@@ -1,7 +1,7 @@
 {
-  "name": "ICMS Academy Terminal",
-  "short_name": "ICMS Tech",
-  "description": "Tuition Center Management System",
+  "name": "ENGVISTA Terminal",
+  "short_name": "ENGVISTA",
+  "description": "ENGVISTA Management System",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0F172A",
