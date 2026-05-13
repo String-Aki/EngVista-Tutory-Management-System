@@ -12,7 +12,7 @@ export default function PaymentsButton() {
       
       <div>
         <h2 className="font-black text-slate-800 text-xl flex items-center gap-2 mb-1 group-hover:text-emerald-600 transition-colors">
-          <CreditCard className="w-6 h-6 text-emerald-500" /> Fee & Receipts
+          <CreditCard className="w-6 h-6 text-emerald-500" /> Receipts
         </h2>
         <p className="text-sm font-medium text-slate-500 mb-6">View your payment history and download receipts.</p>
       </div>

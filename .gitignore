@@ -6,3 +6,6 @@ Reference/
 database_updates.sql
 supabase_schema.sql
 Testing/
+/node_modules
+
+admin-portal/src/app/testing.js
