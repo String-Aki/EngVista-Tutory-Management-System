@@ -74,13 +74,38 @@ export default function PushSubscriber() {
 
       const subData = subscription.toJSON();
       if (subData.keys) {
-        await supabase.from("push_subscriptions").upsert({
-          student_id: activeStudentId,
-          endpoint: subData.endpoint,
-          p256dh: subData.keys.p256dh,
-          auth: subData.keys.auth,
-          user_agent: navigator.userAgent
-        }, { onConflict: "student_id, endpoint" });
+        const { data: existing } = await supabase
+          .from("push_subscriptions")
+          .select("id")
+          .eq("endpoint", subData.endpoint)
+          .maybeSingle();
+
+        if (existing) {
+          const { error } = await supabase.from("push_subscriptions").update({
+            student_id: activeStudentId,
+            p256dh: subData.keys.p256dh,
+            auth: subData.keys.auth,
+            user_agent: navigator.userAgent
+          }).eq("id", existing.id);
+          
+          if (error) {
+            console.error("Supabase update error:", error);
+            throw error;
+          }
+        } else {
+          const { error } = await supabase.from("push_subscriptions").insert({
+            student_id: activeStudentId,
+            endpoint: subData.endpoint,
+            p256dh: subData.keys.p256dh,
+            auth: subData.keys.auth,
+            user_agent: navigator.userAgent
+          });
+          
+          if (error) {
+            console.error("Supabase insert error:", error);
+            throw error;
+          }
+        }
       }
 
       setShowPrompt(false);
@@ -94,29 +119,29 @@ export default function PushSubscriber() {
   if (!showPrompt) return null;
 
   return (
-    <div className="fixed bottom-6 left-4 right-4 md:left-auto md:w-96 z-50 animate-in slide-in-from-bottom-8 fade-in duration-500">
-      <div className="bg-slate-900 border border-slate-700 shadow-2xl rounded-2xl p-5 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
+    <div className="fixed bottom-24 left-4 right-4 md:left-auto md:w-96 z-[60] animate-in slide-in-from-bottom-8 fade-in duration-500">
+      <div className="bg-white border border-slate-200 shadow-xl rounded-2xl p-5 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
         <button 
           onClick={() => setShowPrompt(false)}
-          className="absolute top-3 right-3 text-slate-500 hover:text-white transition-colors"
+          className="absolute top-3 right-3 text-slate-400 hover:text-slate-600 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
         <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 border border-blue-500/30">
+          <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center shrink-0 border border-amber-100">
             <BellRing className="w-6 h-6 animate-pulse" />
           </div>
           <div>
-            <h3 className="font-extrabold text-white text-lg leading-tight mb-1">Stay Updated!</h3>
-            <p className="text-sm font-medium text-slate-400 mb-4 leading-snug">
-              Allow notifications to receive instant alerts for classes, homework, and XP drops! 🚀
+            <h3 className="font-extrabold text-slate-900 text-lg leading-tight mb-1">Stay Updated!</h3>
+            <p className="text-sm font-medium text-slate-500 mb-4 leading-snug">
+              Allow notifications to receive instant alerts for classes, homework, and Point drops! 🚀
             </p>
             <button 
               onClick={() => setupPush(false)}
               disabled={isSubscribing}
-              className="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-xl text-sm transition-all shadow-md shadow-blue-600/20 disabled:opacity-50"
+              className="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-black rounded-xl text-sm transition-all shadow-md shadow-amber-500/20 disabled:opacity-50"
             >
               {isSubscribing ? "Activating..." : "Enable Notifications"}
             </button>

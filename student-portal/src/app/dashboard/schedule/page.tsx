@@ -74,8 +74,8 @@ export default function StudentScheduleTimeline() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center p-4">
-        <CalendarDays className="w-12 h-12 text-blue-300 animate-pulse mb-6" />
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
+        <CalendarDays className="w-12 h-12 text-slate-300 animate-pulse mb-6" />
         <p className="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] animate-pulse">Syncing Timeline...</p>
       </div>
     );
@@ -86,11 +86,8 @@ export default function StudentScheduleTimeline() {
   const overrides     = schedules.filter(s => s.schedule_type === "override");
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-24 font-sans relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none fixed">
-        <div className="absolute top-[20%] -right-[10%] w-[50vw] h-[50vw] bg-[radial-gradient(circle,_rgba(253,230,138,0.2)_0%,_transparent_60%)]" />
-        <div className="absolute bottom-[10%] -left-[10%] w-[40vw] h-[40vw] bg-[radial-gradient(circle,_rgba(191,219,254,0.3)_0%,_transparent_60%)]" />
-      </div>
+    <div className="min-h-screen bg-slate-50 pb-24 font-sans relative overflow-hidden">
+      {/* Removed radial gradients */}
 
       <div className="relative z-10 max-w-3xl mx-auto p-4 md:p-8">
         <button
@@ -200,7 +197,7 @@ export default function StudentScheduleTimeline() {
             return (
               <section key={dateStr} className="relative pl-6 sm:pl-8 border-l-2 border-slate-200/60 pb-4">
                 {isToday ? (
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 bg-amber-400 rounded-full border-4 border-[#F8FAFC] shadow-[0_0_15px_rgba(251,191,36,0.5)] z-10" />
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 bg-amber-400 rounded-full border-4 border-[#F8FAFC] shadow-sm z-10" />
                 ) : (
                   <div className="absolute -left-[5px] top-1.5 w-2 h-2 bg-slate-300 rounded-full" />
                 )}
@@ -210,7 +207,8 @@ export default function StudentScheduleTimeline() {
                   {dateObj.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
                 </p>
 
-                <div className="space-y-3">
+                <div className="overflow-x-auto w-full pb-2">
+                  <div className="space-y-3 min-w-[300px]">
                   {resolvedEvents
                     .sort((a, b) => ((a.start_time ?? "") > (b.start_time ?? "") ? 1 : -1))
                     .map((ev, idx) => {
@@ -296,6 +294,7 @@ export default function StudentScheduleTimeline() {
                         </div>
                       );
                     })}
+                  </div>
                 </div>
               </section>
             );

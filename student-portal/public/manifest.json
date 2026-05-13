@@ -1,7 +1,7 @@
 {
-  "name": "The ICT Cram",
-  "short_name": "ICT Cram",
-  "description": "The official student portal for The ICT Cram by String Aki",
+  "name": "ENGVISTA Student Portal",
+  "short_name": "ENGVISTA",
+  "description": "The official student portal for ENGVISTA",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F8FAFC",

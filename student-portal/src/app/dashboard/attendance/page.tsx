@@ -40,34 +40,30 @@ export default function AttendancePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center p-4 space-y-4">
-        <Loader2 className="w-10 h-10 text-emerald-500 animate-spin" />
-        <p className="text-emerald-600 font-bold uppercase tracking-widest text-xs animate-pulse">Syncing Logs...</p>
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 space-y-4">
+        <Loader2 className="w-10 h-10 text-amber-500 animate-spin" />
+        <p className="text-amber-600 font-bold uppercase tracking-widest text-xs animate-pulse">Syncing Logs...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-emerald-100 selection:text-emerald-900 pb-24 relative overflow-hidden">
-      
-      {/* Light Emerald Ambient Orbs */}
-      <div className="fixed top-[-20%] right-[-10%] w-[40rem] h-[40rem] bg-emerald-200/30 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="fixed bottom-[-10%] left-[-10%] w-[30rem] h-[30rem] bg-teal-200/20 rounded-full blur-[100px] pointer-events-none"></div>
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-amber-100 selection:text-amber-900 pb-24 relative overflow-hidden">
 
       <div className="max-w-3xl mx-auto px-4 md:px-8 pt-8 relative z-10">
         
         <Link 
           href="/dashboard" 
-          className="inline-flex items-center gap-2 text-slate-500 hover:text-emerald-600 text-xs font-bold uppercase tracking-widest transition-colors mb-8 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"
+          className="inline-flex items-center gap-2 text-slate-500 hover:text-amber-600 text-xs font-bold uppercase tracking-widest transition-colors mb-8 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Dashboard
         </Link>
 
         <div className="mb-12 animate-in slide-in-from-top-4 fade-in duration-500">
           <h1 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tight drop-shadow-sm mb-2 flex items-center gap-4">
-            <CalendarDays className="w-10 h-10 text-emerald-500" /> Attendance Log
+            <CalendarDays className="w-10 h-10 text-amber-500" /> Attendance Log
           </h1>
-          <p className="text-emerald-600 font-bold uppercase tracking-widest text-xs">
+          <p className="text-amber-600 font-bold uppercase tracking-widest text-xs">
             Track Your Consistency
           </p>
         </div>
@@ -79,7 +75,7 @@ export default function AttendancePage() {
               No classes logged yet.
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-4 w-full">
               {history.map((record, i) => {
                 const isAbsent = record.status === "absent";
                 return (
@@ -88,22 +84,22 @@ export default function AttendancePage() {
                     className={`flex items-center justify-between p-4 border rounded-2xl shadow-sm transition-colors ${
                       isAbsent
                         ? "bg-red-50/60 border-red-100 hover:bg-red-50"
-                        : "bg-slate-50 hover:bg-emerald-50/50 border-slate-100 hover:border-emerald-200 group"
+                        : "bg-slate-50 hover:bg-amber-50/50 border-slate-100 hover:border-amber-200 group"
                     }`}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-sm border transition-all ${
+                    <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                      <div className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center shadow-sm border transition-all ${
                         isAbsent
                           ? "bg-red-100 border-red-200"
-                          : "bg-white border-slate-100 group-hover:border-emerald-200 group-hover:shadow-emerald-100"
+                          : "bg-white border-slate-100 group-hover:border-amber-200 group-hover:shadow-amber-100"
                       }`}>
                         {isAbsent
                           ? <XCircle className="w-6 h-6 text-red-400" />
-                          : <CheckCircle2 className="w-6 h-6 text-emerald-500" />}
+                          : <CheckCircle2 className="w-6 h-6 text-amber-500" />}
                       </div>
-                      <div>
+                      <div className="min-w-0 break-words">
                         <p className={`font-black text-lg leading-tight transition-colors ${
-                          isAbsent ? "text-red-700" : "text-slate-800 group-hover:text-emerald-900"
+                          isAbsent ? "text-red-700" : "text-slate-800 group-hover:text-amber-900"
                         }`}>
                           {new Date(record.scanned_at).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}
                         </p>
@@ -115,7 +111,7 @@ export default function AttendancePage() {
                     <span className={`font-black text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg border shadow-sm shrink-0 ${
                       isAbsent
                         ? "bg-red-100 text-red-600 border-red-200"
-                        : "bg-emerald-100 text-emerald-700 border-emerald-200"
+                        : "bg-amber-100 text-amber-700 border-amber-200"
                     }`}>
                       {isAbsent ? "Absent" : "Present"}
                     </span>

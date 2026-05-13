@@ -12,10 +12,10 @@ export default function XpLedgerButton() {
 
       <div>
         <h2 className="font-black text-slate-800 text-xl flex items-center gap-2 mb-1 group-hover:text-amber-600 transition-colors">
-          <Sparkles className="w-6 h-6 text-amber-500" /> XP History
+          <Sparkles className="w-6 h-6 text-amber-500" /> Points
         </h2>
         <p className="text-sm font-medium text-slate-500 mb-6">
-          Track your earned experience points and rewards.
+          Track your points.
         </p>
       </div>
 

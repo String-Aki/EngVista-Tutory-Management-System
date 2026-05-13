@@ -106,9 +106,9 @@ export default function PaymentsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0B1120] flex flex-col items-center justify-center p-4 space-y-4">
-        <div className="w-16 h-16 border-4 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin"></div>
-        <p className="text-emerald-400 font-bold uppercase tracking-widest text-xs animate-pulse">
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 space-y-4">
+        <div className="w-16 h-16 border-4 border-amber-500/30 border-t-amber-500 rounded-full animate-spin"></div>
+        <p className="text-amber-600 font-bold uppercase tracking-widest text-xs animate-pulse">
           Accessing Ledger...
         </p>
       </div>
@@ -116,45 +116,45 @@ export default function PaymentsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] font-sans selection:bg-emerald-500 selection:text-white pb-24 relative overflow-hidden">
-      <div className="fixed top-[-20%] left-[-10%] w-[40rem] h-[40rem] bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-amber-100 selection:text-amber-900 pb-24 relative overflow-hidden">
 
       <div className="max-w-3xl mx-auto px-4 md:px-8 pt-8 relative z-10">
         <Link
           href="/dashboard"
-          className="inline-flex items-center gap-2 text-emerald-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors mb-8 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md"
+          className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-800 text-xs font-bold uppercase tracking-widest transition-colors mb-8 bg-white hover:bg-slate-50 px-4 py-2 rounded-full border border-slate-200 shadow-sm backdrop-blur-md"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Dashboard
         </Link>
 
         <div className="mb-12 animate-in slide-in-from-top-4 fade-in duration-500">
-          <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-lg mb-2 flex items-center gap-4">
+          <h1 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tight drop-shadow-sm mb-2 flex items-center gap-4">
             Payment Ledger
           </h1>
-          <p className="text-emerald-300 font-bold uppercase tracking-widest text-xs">
+          <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">
             Fee History & Receipts
           </p>
         </div>
 
         {payments.length === 0 ? (
-          <div className="text-center p-12 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-md animate-in fade-in duration-700 flex flex-col items-center">
-            <CreditCard className="w-16 h-16 mb-4 text-slate-400 opacity-30" />
-            <p className="font-bold text-slate-400">No payments found.</p>
+          <div className="text-center p-12 bg-white rounded-3xl border border-slate-200 shadow-sm backdrop-blur-md animate-in fade-in duration-700 flex flex-col items-center">
+            <CreditCard className="w-16 h-16 mb-4 text-slate-300" />
+            <p className="font-bold text-slate-500">No payments found.</p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="overflow-x-auto w-full pb-4">
+            <div className="space-y-4 min-w-[300px]">
             {payments.map((payment, index) => (
               <div
                 key={payment.id}
-                className="bg-white/5 border border-white/10 p-5 md:p-6 rounded-3xl hover:bg-white/10 transition-all flex flex-col md:flex-row md:items-center justify-between animate-in slide-in-from-bottom-8 fade-in group gap-4"
+                className="bg-white border border-slate-200 p-5 md:p-6 rounded-3xl hover:border-slate-300 hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between animate-in slide-in-from-bottom-8 fade-in group gap-4 shadow-sm"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="bg-emerald-500/20 text-emerald-300 font-black text-[10px] px-2 py-1 rounded-md uppercase tracking-widest border border-emerald-500/20">
+                    <span className="bg-amber-100 text-amber-700 font-black text-[10px] px-2 py-1 rounded-md uppercase tracking-widest border border-amber-200">
                       Paid
                     </span>
-                    <span className="text-xs font-bold text-slate-400">
+                    <span className="text-xs font-bold text-slate-500">
                       {new Date(payment.paid_at).toLocaleDateString(undefined, {
                         month: "short",
                         day: "numeric",
@@ -163,7 +163,7 @@ export default function PaymentsPage() {
                     </span>
                   </div>
 
-                  <h3 className="font-black text-xl text-slate-200 leading-tight">
+                  <h3 className="font-black text-xl text-slate-800 leading-tight">
                     {new Date(payment.payment_month).toLocaleDateString(
                       undefined,
                       { month: "long", year: "numeric" },
@@ -172,25 +172,26 @@ export default function PaymentsPage() {
                   </h3>
 
                   {payment.notes && (
-                    <p className="text-sm font-medium text-slate-400 line-clamp-1 mt-1">
+                    <p className="text-sm font-medium text-slate-500 line-clamp-1 mt-1">
                       Note: {payment.notes}
                     </p>
                   )}
                 </div>
 
-                <div className="flex flex-row md:flex-col items-center md:items-end justify-between border-t border-white/5 md:border-t-0 pt-4 md:pt-0">
-                  <span className="text-2xl font-black text-emerald-400">
+                <div className="flex flex-row md:flex-col items-center md:items-end justify-between border-t border-slate-100 md:border-t-0 pt-4 md:pt-0">
+                  <span className="text-2xl font-black text-amber-500">
                     Rs. {payment.amount.toLocaleString()}
                   </span>
                   <button
                     onClick={() => setSelectedReceipt(payment)}
-                    className="text-xs font-bold text-emerald-500 hover:text-emerald-300 uppercase tracking-widest mt-1 underline decoration-emerald-500/30 underline-offset-4 transition-colors flex items-center gap-1"
+                    className="text-xs font-bold text-amber-600 hover:text-amber-500 uppercase tracking-widest mt-1 underline decoration-amber-500/30 underline-offset-4 transition-colors flex items-center gap-1"
                   >
                     View Receipt <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>
               </div>
             ))}
+            </div>
           </div>
         )}
       </div>
@@ -213,7 +214,7 @@ export default function PaymentsPage() {
                 <button
                   onClick={handleDownloadPDF}
                   disabled={isDownloading}
-                  className="bg-emerald-100 hover:bg-emerald-200 text-emerald-700 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center gap-1.5 disabled:opacity-50"
+                  className="bg-amber-100 hover:bg-amber-200 text-amber-800 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center gap-1.5 disabled:opacity-50"
                 >
                   {isDownloading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
                   {isDownloading ? "Generating..." : "Download PDF"}
@@ -227,14 +228,15 @@ export default function PaymentsPage() {
               </div>
             </div>
 
-            {/* === TARGET FOR PDF SCREENSHOT === */}
-            <div className="p-8 bg-white" ref={receiptRef}>
+            <div className="max-h-[75vh] overflow-y-auto custom-scrollbar pb-8">
+              {/* === TARGET FOR PDF SCREENSHOT === */}
+              <div className="p-8 bg-white" ref={receiptRef}>
               <div className="text-center mb-8 pb-8 border-b-2 border-dashed border-slate-200">
                 <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
-                  <img src="/icon.png" alt="ICT CRAM Logo" className="w-full h-full object-contain" />
+                  <img src="/icon.png" alt="ENGVISTA Logo" className="w-full h-full object-contain" />
                 </div>
                 <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-                  ICT CRAM
+                  ENGVISTA
                 </h2>
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">
                   Payment Receipt
@@ -287,10 +289,10 @@ export default function PaymentsPage() {
                   )}{" "}
                   Tuition Fee
                 </p>
-                <p className="text-4xl font-black text-emerald-600">
+                <p className="text-4xl font-black text-amber-500">
                   Rs. {selectedReceipt.amount.toLocaleString()}
                 </p>
-                <div className="mt-3 inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-md">
+                <div className="mt-3 inline-flex items-center gap-1.5 bg-amber-100 text-amber-700 text-[10px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-md">
                   <Check className="w-3.5 h-3.5" /> Payment Successful
                 </div>
               </div>
@@ -308,7 +310,7 @@ export default function PaymentsPage() {
 
               <div className="text-center pt-8 border-t-2 border-dashed border-slate-200">
                 <p className="text-xs font-bold text-slate-400">
-                  Payment received with thanks. Thank you for choosing ICT Cram.
+                  Payment received with thanks. Thank you for choosing ENGVISTA.
                 </p>
                 <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest">
                   System Generated Receipt
@@ -316,6 +318,7 @@ export default function PaymentsPage() {
               </div>
             </div>
             {/* === END OF TARGET === */}
+            </div>
           </div>
         </div>
       )}

@@ -61,9 +61,9 @@ export default function LeaderboardPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0B1120] flex flex-col items-center justify-center p-4 space-y-4">
-        <div className="w-16 h-16 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin"></div>
-        <p className="text-indigo-400 font-bold uppercase tracking-widest text-xs animate-pulse">Entering The Arena...</p>
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 space-y-4">
+        <div className="w-16 h-16 border-4 border-amber-500/30 border-t-amber-500 rounded-full animate-spin"></div>
+        <p className="text-slate-500 font-bold uppercase tracking-widest text-xs animate-pulse">Loading Rankings...</p>
       </div>
     );
   }
@@ -83,67 +83,61 @@ export default function LeaderboardPage() {
       case 1: return {
         height: 'h-[100%]',
         theme: 'amber',
-        border: 'border-amber-500/30',
-        bg: 'bg-amber-500/10',
-        ring: 'ring-amber-400/50',
-        shadow: 'shadow-[0_0_30px_rgba(251,191,36,0.15)]',
-        text: 'text-amber-400'
+        border: 'border-amber-200',
+        bg: 'bg-white',
+        ring: 'ring-amber-200',
+        shadow: 'shadow-sm',
+        text: 'text-slate-800'
       };
       case 2: return {
         height: 'h-[80%]',
         theme: 'slate',
-        border: 'border-slate-300/30',
-        bg: 'bg-slate-300/10',
-        ring: 'ring-slate-300/50',
-        shadow: 'shadow-[0_0_30px_rgba(203,213,225,0.05)]',
-        text: 'text-slate-300'
+        border: 'border-slate-200',
+        bg: 'bg-white',
+        ring: 'ring-slate-200',
+        shadow: 'shadow-sm',
+        text: 'text-slate-800'
       };
       case 3: return {
         height: 'h-[70%]',
         theme: 'orange',
-        border: 'border-orange-500/30',
-        bg: 'bg-orange-500/10',
-        ring: 'ring-orange-500/50',
-        shadow: 'shadow-[0_0_30px_rgba(249,115,22,0.05)]',
-        text: 'text-orange-400'
+        border: 'border-orange-200',
+        bg: 'bg-white',
+        ring: 'ring-orange-200',
+        shadow: 'shadow-sm',
+        text: 'text-slate-800'
       };
       default: return { height: 'h-full', border: '', bg: '', ring: '', shadow: '', text: '' };
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] font-sans selection:bg-indigo-500 selection:text-white pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-amber-100 selection:text-slate-900 pb-24 relative overflow-hidden">
       
-      {/* Background Ambience */}
-      <div className="fixed top-[-20%] left-[-10%] w-[40rem] h-[40rem] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="fixed bottom-[-20%] right-[-10%] w-[40rem] h-[40rem] bg-rose-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+      {/* Removed dark ambience */}
 
       <div className="max-w-3xl mx-auto px-4 md:px-8 pt-8 relative z-10">
         
         {/* Header */}
         <Link 
           href="/dashboard" 
-          className="inline-flex items-center gap-2 text-indigo-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors mb-8 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md"
+          className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-800 text-xs font-bold uppercase tracking-widest transition-colors mb-8 bg-white hover:bg-slate-50 px-4 py-2 rounded-full border border-slate-200 shadow-sm"
         >
-          <ArrowLeft className="w-4 h-4" /> Escape Arena
+          <ArrowLeft className="w-4 h-4" /> Back to Dashboard
         </Link>
         
         <div className="text-center mb-16 animate-in slide-in-from-top-4 fade-in duration-700">
-          <div className="flex justify-center mb-4">
-            <Swords className="w-12 h-12 text-indigo-500 opacity-80" />
-          </div>
-          <h1 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 tracking-tight drop-shadow-[0_0_15px_rgba(129,140,248,0.3)] mb-2">
-            The Arena
+          <h1 className="text-5xl md:text-6xl font-black text-slate-800 tracking-tight mb-2">
+            Rankings
           </h1>
-          <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-xs">
+          <p className="text-slate-500 font-bold uppercase tracking-[0.3em] text-xs">
             {gradeBatch} Division
           </p>
         </div>
 
         {leaders.length === 0 ? (
-          <div className="text-center p-10 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-md flex flex-col items-center">
-            <Swords className="w-16 h-16 mb-4 text-slate-500 opacity-30" />
-            <p className="font-bold text-slate-400 uppercase tracking-widest">No challengers yet.</p>
+          <div className="text-center p-10 bg-white rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center">
+            <p className="font-bold text-slate-500 uppercase tracking-widest">No challengers yet.</p>
           </div>
         ) : (
           <>
@@ -166,21 +160,21 @@ export default function LeaderboardPage() {
                       {player.rank === 2 && <span className="text-xl drop-shadow-md mb-1 opacity-80">🥈</span>}
                       {player.rank === 3 && <span className="text-xl drop-shadow-md mb-1 opacity-80">🥉</span>}
                       
-                      <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#0B1120] flex items-center justify-center text-white font-black text-xl md:text-2xl relative ring-4 ${pStyles.ring} shadow-xl`}>
+                      <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full bg-slate-50 flex items-center justify-center text-slate-800 font-black text-xl md:text-2xl relative ring-4 ${pStyles.ring} shadow-md`}>
                         {getInitials(player.full_name)}
-                        {isMe && <div className="absolute -bottom-2 bg-indigo-600 text-[9px] uppercase tracking-widest px-2.5 py-0.5 rounded-full ring-2 ring-[#0B1120]">You</div>}
+                        {isMe && <div className="absolute -bottom-2 bg-amber-500 text-white text-[9px] uppercase tracking-widest px-2.5 py-0.5 rounded-full ring-2 ring-white">You</div>}
                       </div>
                     </div>
 
                     {/* The Frosted Glass Pillar */}
-                    <div className={`w-full h-full rounded-t-2xl border-t-2 border-l border-r backdrop-blur-md flex flex-col items-center justify-start pt-14 md:pt-16 px-2 text-center transition-all duration-300 hover:bg-white/5 ${pStyles.bg} ${pStyles.border} ${pStyles.shadow}`}>
+                    <div className={`w-full h-full rounded-t-2xl border-t-2 border-l border-r flex flex-col items-center justify-start pt-14 md:pt-16 px-2 text-center transition-all duration-300 hover:bg-slate-50 ${pStyles.bg} ${pStyles.border} ${pStyles.shadow}`}>
                       <h3 className={`font-black text-sm md:text-base line-clamp-1 mb-0.5 ${pStyles.text}`}>
                         {player.full_name.split(' ')[0]}
                       </h3>
-                      <p className="text-[10px] font-bold text-slate-400 mb-2 truncate w-full flex justify-center items-center gap-1">
+                      <p className="text-[10px] font-bold text-slate-500 mb-2 truncate w-full flex justify-center items-center gap-1">
                         {playerRankInfo.emoji} {playerRankInfo.rankName}
                       </p>
-                      <span className="text-xl md:text-3xl font-black text-white leading-none">{player.total_xp}</span>
+                      <span className="text-xl md:text-3xl font-black text-slate-800 leading-none">{player.total_xp}</span>
                       <span className="text-[9px] font-bold text-slate-500 uppercase mt-1">XP</span>
                     </div>
                   </div>
@@ -198,10 +192,10 @@ export default function LeaderboardPage() {
                 return (
                   <div 
                     key={player.id} 
-                    className={`flex items-center justify-between p-4 rounded-2xl border backdrop-blur-md transition-all duration-500 animate-in slide-in-from-right-8 fade-in ${
+                    className={`flex items-center justify-between p-4 rounded-2xl border transition-all duration-500 animate-in slide-in-from-right-8 fade-in ${
                       isMe 
-                        ? 'bg-indigo-600/10 border-indigo-500/50 shadow-[0_0_20px_rgba(79,70,229,0.15)]' 
-                        : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
+                        ? 'bg-amber-50 border-amber-200 shadow-sm' 
+                        : 'bg-white border-slate-200 hover:bg-slate-50 hover:border-slate-300 shadow-sm'
                     }`}
                     style={{ animationDelay: `${(index + 3) * 100}ms` }}
                   >
@@ -209,23 +203,23 @@ export default function LeaderboardPage() {
                       <div className="w-8 text-center text-slate-500 font-black text-lg">
                         #{rank}
                       </div>
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-sm shrink-0 ring-2 ${isMe ? 'bg-indigo-500 text-white ring-indigo-400/50' : 'bg-[#0B1120] text-slate-300 ring-slate-700'}`}>
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-sm shrink-0 ring-2 ${isMe ? 'bg-amber-500 text-white ring-amber-200' : 'bg-slate-50 text-slate-600 ring-slate-200'}`}>
                         {getInitials(player.full_name)}
                       </div>
                       <div>
-                        <h3 className={`font-black text-sm md:text-base flex items-center gap-2 ${isMe ? 'text-indigo-300' : 'text-slate-200'}`}>
+                        <h3 className={`font-black text-sm md:text-base flex items-center gap-2 ${isMe ? 'text-amber-700' : 'text-slate-800'}`}>
                           {player.full_name} 
-                          {isMe && <span className="text-[9px] bg-indigo-600 text-white px-2 py-0.5 rounded-full uppercase tracking-widest shrink-0">You</span>}
+                          {isMe && <span className="text-[9px] bg-amber-500 text-white px-2 py-0.5 rounded-full uppercase tracking-widest shrink-0">You</span>}
                         </h3>
                         {/* Now showing the actual rank emoji and name instead of just Card Level! */}
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5 flex items-center gap-1">
+                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5 flex items-center gap-1">
                           <span>{playerRankInfo.emoji}</span> {playerRankInfo.rankName}
                         </p>
                       </div>
                     </div>
                     
                     <div className="text-right">
-                      <span className={`text-xl font-black ${isMe ? 'text-indigo-400' : 'text-slate-300'}`}>
+                      <span className={`text-xl font-black ${isMe ? 'text-amber-600' : 'text-slate-800'}`}>
                         {player.total_xp}
                       </span>
                       <span className="text-[10px] font-bold text-slate-500 ml-1">XP</span>

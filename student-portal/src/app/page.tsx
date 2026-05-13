@@ -126,29 +126,25 @@ export default function StudentLoginGateway() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center p-4 font-sans relative overflow-hidden selection:bg-blue-100 selection:text-blue-900">
-      {/* Background Meshes */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute -top-[10%] -right-[10%] w-[50vw] h-[50vw] bg-[radial-gradient(circle,_rgba(191,219,254,0.4)_0%,_transparent_60%)]"></div>
-        <div className="absolute bottom-[10%] -left-[10%] w-[40vw] h-[40vw] bg-[radial-gradient(circle,_rgba(186,230,253,0.3)_0%,_transparent_60%)]"></div>
-      </div>
+    <div className="min-h-screen bg-[#0f172a] flex flex-col items-center justify-center p-4 font-sans relative selection:bg-amber-100 selection:text-amber-900">
+      {/* Removed radial gradients for minimalist design */}
 
       <div className="w-full max-w-md relative z-10">
         <div className="bg-white p-8 md:p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-24 h-24 mx-auto mb-6 relative flex items-center justify-center bg-white rounded-[2rem] border-2 border-blue-50 shadow-sm p-3 transform -rotate-2 transition-all duration-300">
+            <div className="w-24 h-24 mx-auto mb-6 relative flex items-center justify-center bg-white rounded-[2rem] border-2 border-slate-100 shadow-sm p-3 transform  transition-all duration-300">
               <img
                 src="/icon.png"
-                alt="ICT Cram Logo"
+                alt="EngVista Logo"
                 className="w-full h-full object-contain scale-110"
               />
             </div>
-            <h1 className="text-4xl font-black text-slate-800 tracking-tight">
-              ICT Cram
+            <h1 className="text-4xl font-extrabold text-slate-800 tracking-[2px]">
+              ENGVISTA
             </h1>
-            <p className="text-blue-500 font-bold mt-2 text-sm uppercase tracking-widest">
-              Student Access Node
+            <p className="text-amber-500 font-bold mt-2 text-sm uppercase tracking-widest">
+              Student Portal
             </p>
           </div>
 
@@ -170,12 +166,12 @@ export default function StudentLoginGateway() {
                   <button
                     key={account.id}
                     onClick={() => selectProfile(account)}
-                    className="flex flex-col items-center gap-3 p-5 rounded-[1.5rem] bg-white border-2 border-slate-100 active:border-blue-300 active:bg-blue-50 active:scale-[0.98] transition-all group shadow-sm hover:border-slate-200"
+                    className="flex flex-col items-center gap-3 p-5 rounded-[1.5rem] bg-white border-2 border-slate-100 active:border-amber-300 active:bg-amber-50 active:scale-[0.98] transition-all group shadow-sm hover:border-slate-200"
                   >
-                    <div className="w-14 h-14 rounded-full bg-slate-50 border border-slate-200 group-active:border-blue-300 flex items-center justify-center text-lg font-black text-slate-500 group-active:text-blue-600 transition-colors">
+                    <div className="w-14 h-14 rounded-full bg-slate-50 border border-slate-200 group-active:border-amber-300 flex items-center justify-center text-lg font-black text-slate-500 group-active:text-amber-600 transition-colors">
                       {getInitials(account.fullName)}
                     </div>
-                    <span className="text-sm font-bold text-slate-700 group-active:text-blue-700 text-center line-clamp-1 w-full transition-colors">
+                    <span className="text-sm font-bold text-slate-700 group-active:text-amber-700 text-center line-clamp-1 w-full transition-colors">
                       {account.fullName.split(" ")[0]}
                     </span>
                   </button>
@@ -230,7 +226,7 @@ export default function StudentLoginGateway() {
                   {/* Selected Profile Header */}
                   {selectedName && (
                     <div className="flex items-center gap-4 mb-6 bg-slate-50 p-4 rounded-[1.5rem] border border-slate-100 relative">
-                      <div className="w-12 h-12 rounded-full bg-white border-2 border-blue-100 flex items-center justify-center text-lg font-black text-blue-500 shadow-sm shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-white border-2 border-amber-100 flex items-center justify-center text-lg font-black text-amber-500 shadow-sm shrink-0">
                         {getInitials(selectedName)}
                       </div>
                       <div className="flex-1">
@@ -260,7 +256,7 @@ export default function StudentLoginGateway() {
                         <button
                           type="button"
                           onClick={() => setIsScanning(true)}
-                          className="text-[11px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md flex items-center gap-1.5 transition-all active:scale-[0.96] active:bg-blue-100"
+                          className="text-[11px] font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-md flex items-center gap-1.5 transition-all active:scale-[0.96] active:bg-amber-100"
                         >
                           <Camera className="w-3 h-3" /> Scan ID
                         </button>
@@ -273,7 +269,7 @@ export default function StudentLoginGateway() {
                           setShortId(formatShortId(e.target.value));
                           setError("");
                         }}
-                        className="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-[1.25rem] outline-none focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10 text-slate-800 font-mono text-lg font-black placeholder-slate-300 transition-all uppercase shadow-sm"
+                        className="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-[1.25rem] outline-none focus:border-amber-400 focus:bg-white focus:ring-4 focus:ring-amber-500/10 text-slate-800 font-mono text-base appearance-none font-black placeholder-slate-300 transition-all uppercase shadow-sm"
                         placeholder="ICMS-E-19MH06"
                       />
                     </div>
@@ -295,21 +291,21 @@ export default function StudentLoginGateway() {
                         setPin(e.target.value);
                         setError("");
                       }}
-                      className="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-[1.25rem] outline-none focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10 text-slate-800 font-mono text-center text-4xl font-black tracking-[0.5em] placeholder-slate-300 transition-all shadow-sm"
+                      className="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-[1.25rem] outline-none focus:border-amber-400 focus:bg-white focus:ring-4 focus:ring-amber-500/10 text-slate-800 font-mono text-center text-base appearance-none font-black tracking-[0.5em] placeholder-slate-300 transition-all shadow-sm"
                       placeholder="••••"
                     />
                   </div>
 
                   {/* Azure Blue Primary Button */}
-                  <button
-                    type="submit"
-                    disabled={
-                      isLoading ||
-                      pin.length < 4 ||
-                      (shortId.length === 0 && !selectedName)
-                    }
-                    className="w-full py-4 mt-2 bg-blue-500 text-white font-black text-base rounded-[1.25rem] shadow-[0_4px_14px_0_rgba(59,130,246,0.3)] transition-all disabled:opacity-50 disabled:shadow-none active:scale-[0.98] flex items-center justify-center gap-2 hover:bg-blue-600"
-                  >
+                    <button
+                      type="submit"
+                      disabled={
+                        isLoading ||
+                        pin.length < 4 ||
+                        (shortId.length === 0 && !selectedName)
+                      }
+                      className="w-full py-4 mt-2 bg-amber-500 text-slate-900 font-black text-base rounded-[1.25rem] shadow-[0_4px_14px_0_rgba(245,158,11,0.3)] transition-all disabled:opacity-50 disabled:shadow-none active:scale-[0.98] flex items-center justify-center gap-2 hover:bg-amber-600"
+                    >
                     {isLoading ? (
                       <span className="animate-pulse">Signing In...</span>
                     ) : (
@@ -323,7 +319,7 @@ export default function StudentLoginGateway() {
                     <button
                       type="button"
                       onClick={() => setView("picker")}
-                      className="w-full text-center text-xs font-bold text-slate-400 active:text-blue-500 pt-4 transition-colors"
+                      className="w-full text-center text-xs font-bold text-slate-400 active:text-amber-500 pt-4 transition-colors"
                     >
                       Wait, I already saved my profile!
                     </button>
@@ -337,3 +333,4 @@ export default function StudentLoginGateway() {
     </div>
   );
 }
+
