@@ -19,20 +19,12 @@ export const viewport: Viewport = {
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
   title: "ENGVISTA Admin",
   description: "Management System for ENGVISTA",
   manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    title: "ENGVISTA",
-    statusBarStyle: "black-translucent",
-  },
   icons: {
     icon: "/icon.png",
     apple: "/icon.png",

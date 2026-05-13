@@ -45,7 +45,7 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className={`flex flex-col min-h-screen ${isAuthPage ? "" : "pb-20 md:pb-0 md:ml-64 lg:ml-72"}`}>
+    <div className={isAuthPage ? "w-full" : "flex flex-col min-h-screen pb-20 md:pb-0 md:ml-64 lg:ml-72"}>
       {children}
     </div>
   );

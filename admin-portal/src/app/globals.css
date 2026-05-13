@@ -58,48 +58,16 @@
 
 /* ============================================
    iOS / WebKit PWA Compatibility Utilities
-   Fixes keyboard popup failure & native styling
-   in Safari standalone (PWA) mode.
    ============================================ */
 
-/* Nuke ALL Apple native input/button chrome with !important to win any specificity war */
+/* Nuke Apple native input/button chrome with !important to win any specificity war */
 input, textarea, select, button {
   -webkit-appearance: none !important;
   appearance: none !important;
+  touch-action: manipulation !important;
 }
-
-/* Nuclear PWA Keyboard Fix
-   Forces iOS to recognize fields as typable text zones.
-   Without -webkit-touch-callout, standalone PWA mode can
-   silently suppress keyboard triggers on first tap. */
-input[type="email"],
-input[type="password"],
-input[type="text"],
-input[type="number"],
-input[type="tel"],
-input[type="date"],
-textarea {
-  -webkit-user-select: text !important;
-  user-select: text !important;
-  -webkit-touch-callout: default !important;
-}
-
-/* ============================================
-   iPad Air 2 / Legacy WebKit Performance & 
-   Rendering Optimizations
-   ============================================ */
 
 /* Eliminate grey tap-highlight flash on interactive elements */
 * {
   -webkit-tap-highlight-color: transparent;
-}
-
-/* Enable smooth hardware-accelerated momentum scrolling inside overflow containers */
-html, body {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Optimize rendering speed and reduce reflow lag on older A8X/WebKit engines */
-body {
-  text-rendering: optimizeSpeed;
 }

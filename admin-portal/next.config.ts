@@ -11,4 +11,8 @@ const nextConfig = {
   turbopack: {},
 };
 
+module.exports = {
+  allowedDevOrigins: ['192.168.43.185'],
+}
+
 export default withSerwist(nextConfig);
