@@ -1,8 +1,0 @@
-{
-  "name": "english-tutory-app-workspace",
-  "private": true,
-  "workspaces": [
-    "admin-portal",
-    "student-portal"
-  ]
-}
