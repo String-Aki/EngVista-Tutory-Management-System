@@ -10,3 +10,5 @@ Testing/
 
 admin-portal/src/app/testing.js
 student-portal/package-lock.json
+package-lock.json
+package.json
