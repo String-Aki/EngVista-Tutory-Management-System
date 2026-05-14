@@ -9,3 +9,4 @@ Testing/
 /node_modules
 
 admin-portal/src/app/testing.js
+student-portal/package-lock.json

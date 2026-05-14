@@ -1,9 +1,9 @@
 export const RANKS = [
-  { id: "rank_1", name: "Pixel Pioneer", min: 0, desc: "Unlocked on first ID scan.", color: "from-slate-400 to-slate-500", bg: "bg-slate-100", border: "border-slate-300", text: "text-slate-600", icon: "Sprout", emoji: "🌱" },
-  { id: "rank_2", name: "Circuit Surfer", min: 300, desc: "Reached 300 XP.", color: "from-blue-400 to-blue-600", bg: "bg-blue-50", border: "border-blue-300", text: "text-blue-700", icon: "Waves", emoji: "🌊" },
-  { id: "rank_3", name: "Tech Ranger", min: 900, desc: "Reached 900 XP.", color: "from-emerald-400 to-emerald-600", bg: "bg-emerald-50", border: "border-emerald-300", text: "text-emerald-700", icon: "Shield", emoji: "🛡️" },
-  { id: "rank_4", name: "Neon Knight", min: 2000, desc: "Reached 2,000 XP.", color: "from-purple-500 to-pink-500", bg: "bg-purple-50", border: "border-purple-300", text: "text-purple-700", icon: "Swords", emoji: "⚔️" },
-  { id: "rank_5", name: "Digital Legend", min: 5000, desc: "Reached 5,000 XP.", color: "from-amber-400 to-orange-500", bg: "bg-amber-50", border: "border-amber-300", text: "text-amber-700", icon: "Crown", emoji: "👑" },
+  { id: "rank_1", name: "Initiate", min: 0, desc: "Unlocked on first ID scan.", color: "from-slate-400 to-slate-500", bg: "bg-slate-100", border: "border-slate-300", text: "text-slate-600", icon: "Book", emoji: "📚" },
+  { id: "rank_2", name: "Scholar", min: 300, desc: "Reached 300 Points.", color: "from-blue-400 to-blue-600", bg: "bg-blue-50", border: "border-blue-300", text: "text-blue-700", icon: "Microscope", emoji: "🔬" },
+  { id: "rank_3", name: "Achiever", min: 900, desc: "Reached 900 Points.", color: "from-emerald-400 to-emerald-600", bg: "bg-emerald-50", border: "border-emerald-300", text: "text-emerald-700", icon: "Star", emoji: "⭐" },
+  { id: "rank_4", name: "Elite", min: 2000, desc: "Reached 2,000 Points.", color: "from-indigo-500 to-indigo-700", bg: "bg-indigo-50", border: "border-indigo-300", text: "text-indigo-700", icon: "Medal", emoji: "🏅" },
+  { id: "rank_5", name: "Legend", min: 5000, desc: "Reached 5,000 Points.", color: "from-amber-400 to-orange-500", bg: "bg-amber-50", border: "border-amber-300", text: "text-amber-700", icon: "Trophy", emoji: "🏆" },
 ];
 
 export const ACHIEVEMENTS = [

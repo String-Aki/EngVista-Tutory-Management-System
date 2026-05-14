@@ -1,0 +1,8 @@
+{
+  "name": "engvista-tutory-management-system",
+  "private": true,
+  "workspaces": [
+    "student-portal",
+    "admin-portal"
+  ]
+}

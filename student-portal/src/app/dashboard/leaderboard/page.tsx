@@ -175,7 +175,7 @@ export default function LeaderboardPage() {
                         {playerRankInfo.emoji} {playerRankInfo.rankName}
                       </p>
                       <span className="text-xl md:text-3xl font-black text-slate-800 leading-none">{player.total_xp}</span>
-                      <span className="text-[9px] font-bold text-slate-500 uppercase mt-1">XP</span>
+                      <span className="text-[9px] font-bold text-slate-500 uppercase mt-1">Pts</span>
                     </div>
                   </div>
                 );
@@ -222,7 +222,7 @@ export default function LeaderboardPage() {
                       <span className={`text-xl font-black ${isMe ? 'text-amber-600' : 'text-slate-800'}`}>
                         {player.total_xp}
                       </span>
-                      <span className="text-[10px] font-bold text-slate-500 ml-1">XP</span>
+                      <span className="text-[10px] font-bold text-slate-500 ml-1">Pts</span>
                     </div>
                   </div>
                 );

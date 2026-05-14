@@ -6,7 +6,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { Sparkles, ArrowLeft, Inbox } from "lucide-react";
 
-export default function XpLedgerPage() {
+export default function PointsLedgerPage() {
   const router = useRouter();
 
   const [transactions, setTransactions] = useState<any[]>([]);
@@ -40,7 +40,7 @@ export default function XpLedgerPage() {
         if (txError) throw txError;
         setTransactions(txData || []);
       } catch (error) {
-        console.error("Error fetching XP ledger:", error);
+        console.error("Error fetching points ledger:", error);
       } finally {
         setIsLoading(false);
       }
@@ -88,7 +88,7 @@ export default function XpLedgerPage() {
               Total Earned
             </p>
             <p className="text-3xl font-black text-amber-500">
-              {totalXp} <span className="text-lg text-amber-500/70">XP</span>
+              {totalXp} <span className="text-lg text-amber-500/70">Points</span>
             </p>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default function XpLedgerPage() {
             <Inbox className="w-16 h-16 mb-4 text-slate-300" />
             <p className="font-bold text-slate-500">Your ledger is empty.</p>
             <p className="text-sm text-slate-400 mt-2">
-              Complete quests and attend classes to earn XP!
+              Complete quests and attend classes to earn points!
             </p>
           </div>
         ) : (
@@ -131,6 +131,11 @@ export default function XpLedgerPage() {
                         <h3 className="font-black text-lg text-slate-800 group-hover:text-slate-900 transition-colors">
                           {tx.reason}
                         </h3>
+                        {tx.note && (
+                          <p className="text-sm font-medium text-slate-600 mt-1">
+                            {tx.note}
+                          </p>
+                        )}
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">
                           {new Date(tx.created_at).toLocaleDateString(
                             undefined,
@@ -150,7 +155,7 @@ export default function XpLedgerPage() {
                       >
                         <span className={`font-black text-xl ${colorTheme}`}>
                           {sign}
-                          {tx.amount} XP
+                          {tx.amount} Pts
                         </span>
                       </div>
                     </div>

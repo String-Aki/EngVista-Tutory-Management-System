@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Student Portal | ICMS",
-  description: "Track your XP, Ranks, and Homework Quests.",
+  description: "Track your Points, Ranks, and Homework Quests.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
