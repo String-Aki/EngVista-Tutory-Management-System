@@ -12,3 +12,5 @@ admin-portal/src/app/testing.js
 student-portal/package-lock.json
 package-lock.json
 package.json
+admin-portal/pnpm-workspace.yaml
+student-portal/pnpm-workspace.yaml
