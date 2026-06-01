@@ -6,6 +6,7 @@ export default async function StudentsDirectory() {
   const { data: students, error } = await supabase
     .from("students")
     .select("*")
+    .eq("is_active", true)
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -34,7 +35,7 @@ export default async function StudentsDirectory() {
                 <span className="text-amber-500">🎓</span> Enrolled Students
               </div>
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-700 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
-                {students?.length || 0} Total
+                {students?.length || 0} Active
               </span>
             </h2>
 

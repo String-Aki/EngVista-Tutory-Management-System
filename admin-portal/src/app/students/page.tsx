@@ -499,7 +499,7 @@ export default function StudentsHub() {
                   {filteredStudents.map((student) => (
                     <tr
                       key={student.id}
-                      className={`transition-colors hover:bg-slate-50 ${!student.is_active ? "opacity-60 bg-slate-50/50" : ""}`}
+                      className={`transition-colors hover:bg-slate-50 ${!student.is_active ? "bg-slate-50/50" : ""}`}
                     >
                       <td className="p-4">
                         <div className="flex items-center gap-3">
