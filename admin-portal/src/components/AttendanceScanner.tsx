@@ -154,12 +154,12 @@ export default function AttendanceScanner({
             note: "Checked in via QR Scanner",
           });
 
-          const updatedCycle = (student.cycle_classes || 0) + 1;
+          const updatedCycle = (student.sessions_attended || 0) + 1;
 
           await supabase
             .from("students")
             .update({
-              cycle_classes: updatedCycle,
+              sessions_attended: updatedCycle,
             })
             .eq("id", student.id);
 
@@ -170,7 +170,7 @@ export default function AttendanceScanner({
             onScanSuccess(
               {
                 ...student,
-                cycle_classes: updatedCycle,
+                sessions_attended: updatedCycle,
                 _matchedSessionTitle: matchedSession?.title || null,
               },
               false,

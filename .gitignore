@@ -14,3 +14,4 @@ package-lock.json
 package.json
 admin-portal/pnpm-workspace.yaml
 student-portal/pnpm-workspace.yaml
+.vscode/settings.json
